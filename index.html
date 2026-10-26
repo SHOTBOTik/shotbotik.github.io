@@ -1,209 +1,2830 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" data-oss="on">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#04060d">
 <title>Сергей · SHOTBOTik — разработка и автоматизация с нейросетями</title>
-<meta name="description" content="Сергей (SHOTBOTik), Воронеж. Разработка и автоматизация с нейросетями (Claude Code): лаунчер JustLauncher, Пульт, боты, реклама в Яндекс Директе.">
+<meta name="description" content="Сергей (SHOTBOTik), Воронеж. Разработка и автоматизация с нейросетями: админка и бэкенд лаунчера JustLauncher, Пульт поверх Claude Code, реклама в Директе.">
 <link rel="canonical" href="https://shotbotik.me/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://shotbotik.me/">
 <meta property="og:site_name" content="SHOTBOTik">
 <meta property="og:locale" content="ru_RU">
+<meta property="og:url" content="https://shotbotik.me/">
 <meta property="og:title" content="Сергей · SHOTBOTik">
 <meta property="og:description" content="Разработка и автоматизация с нейросетями">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:image" content="https://shotbotik.me/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SHOTBOTik из светящихся частиц и строка «Разработка и автоматизация с нейросетями»">
+<meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": "https://shotbotik.me/#me",
   "name": "Сергей",
   "alternateName": "SHOTBOTik",
   "url": "https://shotbotik.me/",
   "description": "Разработка и автоматизация с нейросетями (Claude Code)",
   "address": { "@type": "PostalAddress", "addressLocality": "Воронеж", "addressCountry": "RU" },
-  "knowsAbout": ["Claude Code", "AI-агенты", "MCP", "Claude Agent SDK", "Node.js", "TypeScript", "React", "Kotlin", "Spring", "Rust", "PostgreSQL", "SQL", "Playwright", "GitLab CI", "Яндекс Директ", "Яндекс Метрика"],
   "email": "hi@shotbotik.me",
-  "sameAs": ["https://t.me/SHOTBOTik", "https://github.com/SHOTBOTik"]
+  "sameAs": ["https://t.me/SHOTBOTik", "https://github.com/SHOTBOTik"],
+  "knowsAbout": ["Claude Code", "AI-агенты", "Claude Agent SDK", "MCP", "LLM", "Kotlin", "Spring", "Node.js", "Rust", "PostgreSQL", "React", "TypeScript", "Playwright", "GitLab CI", "Яндекс Директ", "Яндекс Метрика"]
 }
 </script>
 <style>
   :root {
-    --bg: #f5f6f8;
-    --card: #ffffff;
-    --text: #1a1d22;
-    --muted: #5f6873;
-    --line: #e2e5ea;
-    --accent: #2f6fed;
-    --accent-text: #ffffff;
-    --soft: #eaf0fd;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #101317;
-      --card: #181c22;
-      --text: #e7eaee;
-      --muted: #98a1ac;
-      --line: #29303a;
-      --accent: #6b98ff;
-      --accent-text: #0d1424;
-      --soft: #1b2639;
-    }
+    --bg: #04060d;
+    --panel: rgba(7, 11, 24, .86);
+    --line: rgba(90, 170, 255, .2);
+    --text: #e8f1ff;
+    --soft: #c3d2ea;
+    --muted: #9fb0cc;
+    --dim: #7c90b3;
+    --blue: #2f6bff;
+    --cyan: #29e1ff;
+    --vio: #8b5cff;
+    --ok: #52f2d6;
+    --bad: #ff6f9f;
+    --sans: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+    --display: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+    --mono: ui-monospace, "Cascadia Code", "Cascadia Mono", Consolas, "SF Mono", Menlo, monospace;
+    --bar: 60px;
   }
   * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  html { background: var(--bg); scroll-behavior: smooth; scroll-padding-top: calc(var(--bar) + 12px); -webkit-text-size-adjust: 100%; }
+  body { margin: 0; color: var(--text); background: var(--bg); font: 17px/1.6 var(--sans); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 6px; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .skip { position: fixed; left: 12px; top: -60px; z-index: 50; padding: 12px 16px; border-radius: 10px; background: var(--cyan); color: #031020; font-weight: 700; text-decoration: none; }
+  .skip:focus { top: 12px; }
+
+  /* Слой графики: фиксирован за текстом, клики не перехватывает */
+  #gfx { position: fixed; left: 0; top: 0; width: 100%; height: 100vh; height: 100lvh; z-index: 0; pointer-events: none; display: block; }
+  main, footer { position: relative; z-index: 2; }
+  /* Мягкое свечение у курсора (только мышь) */
+  .cglow { position: fixed; left: 0; top: 0; z-index: 1; width: 560px; height: 560px; margin: -280px 0 0 -280px; border-radius: 50%; pointer-events: none; opacity: 0; transition: opacity .4s;
+    background: radial-gradient(circle, rgba(41, 225, 255, .085), rgba(47, 107, 255, .045) 32%, transparent 64%); will-change: transform; }
+  .cglow.on { opacity: 1; }
+
+  /* ---------- Шапка ---------- */
+  .bar { position: fixed; left: 0; right: 0; top: 0; z-index: 30; height: var(--bar);
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 0 clamp(16px, 4vw, 48px);
+    padding-left: max(clamp(16px, 4vw, 48px), env(safe-area-inset-left));
+    padding-right: max(clamp(16px, 4vw, 48px), env(safe-area-inset-right));
+    background: linear-gradient(rgba(4, 6, 13, .97), rgba(4, 6, 13, .9));
+    border-bottom: 1px solid rgba(90, 170, 255, .1); }
+  .brand { display: inline-flex; align-items: center; min-height: 44px; font: 14px/1 var(--mono); letter-spacing: .06em; text-decoration: none; color: var(--text); }
+  .brand b { color: var(--cyan); font-weight: 400; }
+  .bar nav ul { display: flex; gap: 4px; margin: 0; padding: 0; list-style: none; }
+  .bar nav a { position: relative; display: inline-flex; align-items: center; min-height: 44px; padding: 0 11px;
+    font: 13px/1 var(--mono); letter-spacing: .04em; color: var(--muted); text-decoration: none; transition: color .2s; }
+  .bar nav a:hover { color: var(--text); }
+  .bar nav a::after { content: ""; position: absolute; left: 11px; right: 11px; bottom: 9px; height: 1px; background: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan); transform: scaleX(0); transform-origin: left; transition: transform .3s; }
+  .bar nav a[aria-current] { color: var(--cyan); }
+  .bar nav a[aria-current]::after { transform: scaleX(1); }
+  .menu-btn { display: none; min-width: 44px; min-height: 44px; padding: 0 12px; border-radius: 10px; border: 1px solid rgba(80, 190, 255, .3);
+    background: rgba(8, 14, 32, .8); color: var(--text); font: 600 14px/1 var(--sans); cursor: pointer; }
+  .progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; pointer-events: none; }
+  .progress i { display: block; height: 100%; background: linear-gradient(90deg, var(--blue), var(--cyan), var(--vio)); box-shadow: 0 0 10px rgba(41, 225, 255, .6);
+    transform-origin: 0 50%; transform: scaleX(0); }
+
+  /* ---------- Первый экран ---------- */
+  .hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; padding: calc(var(--bar) + 40px) 16px 96px;
+    padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
+  .hero-in { width: 100%; max-width: 1320px; }
+  .kicker { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 8px; font: 500 13px/1 var(--mono); letter-spacing: .26em; text-transform: uppercase;
+    color: var(--cyan); text-shadow: 0 0 14px var(--bg); }
+  .kicker i { width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 12px var(--cyan); }
+  /* Ник — настоящий HTML-текст: слабая заливка видна сразу, частицы собираются поверх по той же форме */
+  #nick { margin: 0; font: 900 clamp(48px, 13vw, 190px)/1 var(--display); letter-spacing: -.01em; white-space: nowrap;
+    color: rgba(140, 205, 255, .13); -webkit-text-stroke: 1px rgba(120, 210, 255, .28); }
+  .lead { margin: 20px auto 10px; font-size: clamp(21px, 2.5vw, 32px); font-weight: 650; line-height: 1.22;
+    text-shadow: 0 0 22px var(--bg), 0 0 8px var(--bg), 0 0 2px var(--bg); }
+  .sub { margin: 0 auto 10px; max-width: 640px; color: var(--soft); font-size: clamp(16px, 1.4vw, 18.5px); line-height: 1.5;
+    text-shadow: 0 0 18px var(--bg), 0 0 6px var(--bg), 0 0 2px var(--bg); }
+  .meta { margin: 0 auto 6px; font: 13px/1.6 var(--mono); color: var(--muted); letter-spacing: .04em; text-shadow: 0 0 10px var(--bg); }
+  .stack { margin: 0 auto 26px; font: 13px/1.6 var(--mono); color: var(--muted); letter-spacing: .02em; text-shadow: 0 0 10px var(--bg); }
+  /* Тёмное пятно под текстом первого экрана: частицы за ним приглушены */
+  .hero-txt { position: relative; isolation: isolate; }
+  .hero-txt::before { content: ""; position: absolute; inset: -10px 8% -16px; z-index: -1; pointer-events: none;
+    background: radial-gradient(closest-side, rgba(4, 6, 13, .8), rgba(4, 6, 13, .5) 60%, transparent); }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 0; }
+  .btn { --mx: 0px; --my: 0px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 12px 22px; border-radius: 12px;
+    font: 600 15px/1 var(--sans); text-decoration: none; color: var(--text); background: rgba(8, 14, 32, .78); border: 1px solid rgba(80, 190, 255, .35);
+    transform: translate(var(--mx), var(--my)); transition: border-color .2s, box-shadow .2s, transform .25s cubic-bezier(.2, .8, .2, 1); }
+  .btn:hover { border-color: var(--cyan); box-shadow: 0 0 26px rgba(41, 225, 255, .28); }
+  .btn.primary { color: #031020; background: linear-gradient(100deg, #3b7bff, #29e1ff); border-color: transparent; box-shadow: 0 0 28px rgba(47, 107, 255, .45); }
+  .btn.primary:hover { box-shadow: 0 0 40px rgba(41, 225, 255, .6); }
+  .btn svg { width: 17px; height: 17px; flex: none; }
+  .hint { position: absolute; left: 50%; bottom: 24px; bottom: max(24px, calc(env(safe-area-inset-bottom) + 12px)); transform: translateX(-50%); font: 11px/1 var(--mono); letter-spacing: .3em; text-transform: uppercase; color: var(--muted); transition: opacity .4s; }
+  .hint::after { content: ""; display: block; width: 1px; height: 34px; margin: 10px auto 0; background: linear-gradient(var(--cyan), transparent); animation: drip 2s ease-in-out infinite; }
+  .scrolled .hint { opacity: 0; }
+  @keyframes drip { 0%, 100% { transform: scaleY(.3); transform-origin: top; opacity: .3; } 50% { transform: scaleY(1); opacity: 1; } }
+
+  /* ---------- Разделы ---------- */
+  /* overflow-x: clip режет вылезающие подложки, но не ломает sticky */
+  main { counter-reset: sec; overflow-x: clip; }
+  .sec { position: relative; max-width: 1240px; margin: 0 auto; padding: 16vh 24px 6vh;
+    padding-left: max(24px, env(safe-area-inset-left)); padding-right: max(24px, env(safe-area-inset-right)); }
+  .sec-num { font: 12px/1 var(--mono); letter-spacing: .2em; color: var(--cyan); }
+  .sec-num::before { counter-increment: sec; content: counter(sec, decimal-leading-zero); }
+  h2 { margin: 12px 0 16px; font: 800 clamp(34px, 5vw, 60px)/1.05 var(--display); letter-spacing: -.01em; text-shadow: 0 0 30px var(--bg); }
+  .sec-head { max-width: 720px; }
+  .sec-head p, .lede { margin: 0; color: var(--soft); font-size: 18px; text-shadow: 0 0 16px var(--bg), 0 0 4px var(--bg); }
+  /* Мягкая подложка за текстом: частицы под ней приглушены */
+  .plate { position: relative; isolation: isolate; }
+  .plate::before { content: ""; position: absolute; inset: -34px -48px; z-index: -1; pointer-events: none;
+    background: radial-gradient(closest-side, rgba(4, 6, 13, .86), rgba(4, 6, 13, .6) 62%, transparent); }
+  @media (max-width: 1299px) { .plate::before { inset: -34px -24px; } }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; }
+
+  /* ---------- Обо мне ---------- */
+  .about-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 40px; align-items: center; }
+  .about-text p { margin: 0 0 16px; color: var(--soft); font-size: 18px; line-height: 1.65; }
+  .spot { width: 100%; }
+  .net-spot { aspect-ratio: 1; max-width: 500px; justify-self: center; }
+  .facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin: 40px 0 0; padding: 0; list-style: none; }
+  .facts li { padding: 18px 18px 16px; }
+  .facts b { display: block; margin-bottom: 6px; font-size: 16px; line-height: 1.35; }
+  .facts span { color: var(--muted); font-size: 15px; line-height: 1.5; }
+
+  /* ---------- Как я работаю: граф шагов ---------- */
+  .steps { position: relative; margin: 56px 0 0; padding: 0; list-style: none; }
+  .step { position: relative; }
+  .dot { position: absolute; width: 18px; height: 18px; border-radius: 50%; border: 2px solid rgba(41, 225, 255, .55); background: var(--bg);
+    box-shadow: 0 0 0 4px rgba(4, 6, 13, .7); transition: background .3s, box-shadow .3s, border-color .3s; }
+  .step-in { padding: 14px 15px 13px; background: rgba(7, 11, 24, .82); border: 1px solid var(--line); border-radius: 10px; transition: border-color .3s, box-shadow .3s; }
+  .step h3 { margin: 0 0 6px; font: 700 12.5px/1.3 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: #a9c6f0; transition: color .3s; }
+  .step p { margin: 0; color: var(--soft); font-size: 14.5px; line-height: 1.5; }
+  .step.done .dot { border-color: var(--cyan); background: rgba(41, 225, 255, .25); }
+  .step.done h3 { color: #d6e9ff; }
+  .step.on .dot { background: var(--cyan); border-color: var(--cyan); box-shadow: 0 0 0 4px rgba(4, 6, 13, .7), 0 0 22px var(--cyan); }
+  .step.on .step-in { border-color: rgba(41, 225, 255, .7); box-shadow: 0 0 30px rgba(41, 225, 255, .18); }
+  .step.on h3 { color: var(--cyan); }
+  @media (min-width: 1100px) {
+    /* Десктоп: ветка main идёт по точкам слева направо, четыре worktree поднимаются над ней */
+    .steps { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0 14px; padding-top: 92px; }
+    .step { padding-top: 40px; }
+    .dot { left: 16px; top: 0; }
+    .lane-tag { position: absolute; left: calc(100% + 7px); top: -84px; width: calc(100% + 14px); text-align: center; }
   }
-  main { max-width: 760px; margin: 0 auto; padding: 56px 20px 32px; }
-  header { margin-bottom: 32px; }
-  .nick { color: var(--accent); font-weight: 700; letter-spacing: .04em; }
-  h1 { font-size: 44px; line-height: 1.1; margin: 4px 0 12px; }
-  .lead { font-size: 22px; margin: 0 0 6px; }
-  .meta { color: var(--muted); margin: 0; }
-  section {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 22px 24px;
-    margin-bottom: 16px;
+  @media (max-width: 1099px) {
+    /* Телефон и планшет: ветка идёт сверху вниз слева от текста */
+    .step { padding: 0 0 16px 66px; }
+    .dot { left: 13px; top: 15px; }
+    .lane-tag { display: none; }
   }
-  section.note { background: var(--soft); border-color: transparent; }
-  h2 { font-size: 20px; margin: 0 0 10px; }
-  h3 { font-size: 17px; margin: 16px 0 4px; }
-  p { margin: 0 0 8px; }
-  p:last-child { margin-bottom: 0; }
-  ul { margin: 0; padding-left: 20px; }
-  li { margin: 4px 0; }
-  ul.tags { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; }
-  ul.tags li { margin: 0; padding: 3px 12px; border: 1px solid var(--line); border-radius: 999px; font-size: 15px; }
-  .button {
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 10px;
-    background: var(--accent);
-    color: var(--accent-text);
-    font-weight: 600;
-    text-decoration: none;
+  .lane-tag { font: 11px/1 var(--mono); letter-spacing: .14em; color: var(--muted); text-transform: uppercase; pointer-events: none; }
+  .work-row { display: grid; grid-template-columns: minmax(0, 640px) minmax(0, 1fr); gap: 56px; align-items: center; margin-top: 44px; }
+  .rules { margin: 0; padding: 0; list-style: none; display: grid; gap: 14px; }
+  .rules li { padding: 16px 18px 16px 46px; position: relative; color: var(--soft); font-size: 16px; line-height: 1.5; }
+  .rules li::before { content: ""; position: absolute; left: 18px; top: 23px; width: 10px; height: 10px; border-radius: 3px; transform: rotate(45deg);
+    background: linear-gradient(135deg, var(--cyan), var(--vio)); box-shadow: 0 0 10px rgba(41, 225, 255, .6); }
+
+  /* Терминал */
+  .term { position: relative; background: rgba(5, 9, 20, .93); border: 1px solid rgba(80, 180, 255, .3); border-radius: 14px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .4), 0 30px 80px rgba(0, 0, 0, .55), 0 0 60px rgba(47, 107, 255, .14); overflow: hidden; }
+  .term-bar { display: flex; align-items: center; gap: 7px; padding: 11px 14px; border-bottom: 1px solid rgba(80, 180, 255, .14); font: 12px/1 var(--mono); color: var(--muted); }
+  .term-bar i { width: 10px; height: 10px; border-radius: 50%; background: #3b7bff; }
+  .term-bar i:nth-child(2) { background: #29e1ff; opacity: .7; }
+  .term-bar i:nth-child(3) { background: #8b5cff; opacity: .7; }
+  .term-bar span { margin-left: 8px; }
+  /* Высота фиксирована: печать не двигает вёрстку и разметку частиц */
+  .term-body { margin: 0; padding: 16px 18px 6px; height: calc(14 * 1.62em + 22px); font: 14.5px/1.62 var(--mono); white-space: pre-wrap; overflow: hidden; color: #c9d7ee; }
+  .term-body.live { overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+  .term-in { display: flex; align-items: center; gap: .6em; padding: 4px 18px 12px; font: 14.5px/1.62 var(--mono); visibility: hidden; }
+  .term-in.on { visibility: visible; }
+  .term-in input { flex: 1; min-width: 0; min-height: 44px; padding: 0 8px; border: 1px solid rgba(80, 180, 255, .25); border-radius: 6px; background: rgba(4, 7, 16, .9); color: var(--text); font: inherit; caret-color: var(--cyan); }
+  .term-in input::placeholder { color: #7186ad; }
+  .ln { animation: lnIn .25s ease-out; }
+  @keyframes lnIn { from { opacity: 0; transform: translateX(-4px); } to { opacity: 1; transform: none; } }
+  .pr { color: var(--cyan); }
+  .tg { display: inline-block; width: 12ch; }
+  .c1 { color: #6b9dff; } .c2 { color: #b294ff; } .c3 { color: #29e1ff; } .c4 { color: #7fbfff; } .c5 { color: #c2a6ff; }
+  .tdim { color: #8193b3; }
+  .ok { color: var(--ok); font-weight: 600; }
+  .bad { color: var(--bad); font-weight: 600; }
+  .sp { color: var(--cyan); }
+  .out { color: #c9d7ee; }
+  .out a { color: var(--cyan); }
+  .caret { display: inline-block; width: .6em; height: 1.1em; vertical-align: -.2em; background: var(--cyan); animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ---------- Опыт: шкала ---------- */
+  .tl { position: relative; margin: 56px 0 0; padding: 0; list-style: none; }
+  .tl::before { content: ""; position: absolute; top: 0; bottom: 0; width: 1px; background: linear-gradient(transparent, rgba(41, 225, 255, .25) 8%, rgba(41, 225, 255, .25) 92%, transparent); }
+  .tl li { position: relative; }
+  .mark { position: absolute; width: 18px; height: 18px; border-radius: 50%; border: 2px solid rgba(139, 92, 255, .6); background: var(--bg); transition: background .5s, box-shadow .5s, border-color .5s; }
+  .tl li.lit .mark { background: var(--cyan); border-color: var(--cyan); box-shadow: 0 0 22px var(--cyan); }
+  .tl-card { padding: 18px 20px; transition: border-color .5s, box-shadow .5s; }
+  .tl li.lit .tl-card { border-color: rgba(41, 225, 255, .45); box-shadow: 0 0 34px rgba(41, 225, 255, .1); }
+  .when { margin: 0 0 4px; font: 600 12.5px/1.3 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--cyan); }
+  .tl h3 { margin: 0 0 6px; font: 750 21px/1.25 var(--display); }
+  .tl p.txt { margin: 0; color: var(--soft); font-size: 16px; line-height: 1.55; }
+  /* Подпись лежит на спирали шкалы: своя тёмная подложка держит контраст */
+  .tl-cap { width: fit-content; max-width: 100%; margin: 22px 0 0; padding: 6px 12px; border-radius: 8px; background: rgba(4, 6, 13, .9);
+    font: 13px/1.5 var(--mono); color: var(--soft); letter-spacing: .04em; }
+  @media (min-width: 900px) {
+    .tl::before { left: 50%; }
+    .tl li { width: 50%; padding: 0 58px 34px 0; }
+    .tl li:nth-child(even) { margin-left: 50%; padding: 0 0 34px 58px; }
+    .tl li + li { margin-top: -54px; }
+    .tl li .mark { right: -9px; top: 24px; }
+    .tl li:nth-child(even) .mark { left: -9px; right: auto; }
+    .tl li:nth-child(odd) .tl-card { text-align: right; }
+    .tl-cap { margin: 22px auto 0; text-align: center; }
   }
-  .button:hover { filter: brightness(1.08); }
-  .contacts { display: flex; flex-wrap: wrap; gap: 10px; }
-  .button.secondary { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
-  footer { color: var(--muted); font-size: 14px; text-align: center; margin-top: 28px; }
-  @media (max-width: 520px) {
-    main { padding-top: 36px; }
-    h1 { font-size: 34px; }
-    .lead { font-size: 19px; }
-    section { padding: 18px; }
+  @media (max-width: 899px) {
+    .tl::before { left: 22px; }
+    .tl li { padding: 0 0 18px 58px; }
+    .tl li .mark { left: 13px; top: 22px; }
+  }
+
+  /* ---------- Проекты ---------- */
+  .proj { display: grid; grid-template-columns: minmax(0, .78fr) minmax(0, 1.22fr); gap: 44px; margin-top: 44px; }
+  .emb-stage { position: sticky; top: calc(50vh - 230px); height: 460px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; }
+  .emb-spot { position: absolute; inset: 0 0 40px; }
+  .emb-cap { position: relative; margin: 0; padding: 6px 12px; border-radius: 8px; font: 12px/1.3 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--cyan);
+    background: rgba(4, 7, 16, .7); border: 1px solid rgba(41, 225, 255, .25); text-align: center; transition: opacity .3s; }
+  .cards { display: grid; gap: 20px; }
+  .card { --rx: 0deg; --ry: 0deg; --gx: 50%; --gy: 0%; position: relative; padding: 24px 24px 20px; background: rgba(7, 11, 24, .9); border: 1px solid rgba(80, 180, 255, .22); border-radius: 14px;
+    transform: perspective(1100px) rotateX(var(--rx)) rotateY(var(--ry)); transition: border-color .3s, box-shadow .3s, transform .3s cubic-bezier(.2, .8, .2, 1); }
+  .card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s;
+    background: radial-gradient(520px circle at var(--gx) var(--gy), rgba(120, 220, 255, .11), transparent 42%); }
+  .card:hover::after { opacity: 1; }
+  .card.act { border-color: rgba(41, 225, 255, .55); box-shadow: 0 0 46px rgba(41, 225, 255, .12); }
+  .card-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 14px; font: 11.5px/1.2 var(--mono); letter-spacing: .18em; text-transform: uppercase; }
+  .badge { color: var(--cyan); }
+  .badge::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 8px; border-radius: 50%; background: currentColor; box-shadow: 0 0 10px currentColor; vertical-align: 1px; }
+  .idx { color: var(--dim); }
+  .card h3 { margin: 0 0 8px; font: 800 25px/1.18 var(--display); }
+  .card p { margin: 0 0 10px; color: var(--soft); font-size: 16px; line-height: 1.55; }
+  .card p.role { color: var(--text); }
+  .card p.role b { color: var(--cyan); font-weight: 600; }
+  .card a { color: var(--cyan); text-underline-offset: 3px; }
+  details { margin: 6px 0 14px; border-top: 1px solid rgba(90, 170, 255, .14); }
+  summary { display: flex; align-items: center; gap: 10px; min-height: 46px; cursor: pointer; list-style: none; font: 600 14px/1 var(--mono); letter-spacing: .06em; color: #bcd6ff; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: ""; width: 8px; height: 8px; border-right: 2px solid var(--cyan); border-bottom: 2px solid var(--cyan); transform: rotate(-45deg); transition: transform .25s; margin-left: 2px; }
+  details[open] summary::before { transform: rotate(45deg); }
+  summary:hover { color: var(--cyan); }
+  .det { padding: 2px 0 6px; }
+  .det h4 { margin: 14px 0 6px; font: 700 15px/1.35 var(--sans); color: var(--text); }
+  .det h4 span { font: 12px/1 var(--mono); color: var(--muted); margin-left: 6px; }
+  .det ul { margin: 0; padding-left: 20px; }
+  .det li { margin: 4px 0; color: var(--soft); font-size: 15px; line-height: 1.5; }
+  .det li::marker { color: var(--cyan); }
+  .det p { font-size: 15px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 0; padding: 0; list-style: none; }
+  .tags li { padding: 3px 9px; border-radius: 999px; border: 1px solid rgba(90, 170, 255, .24); font: 12px/1.5 var(--mono); color: #a9c0e4; }
+  .repos { margin: 10px 0 0; font: 13.5px/1.6 var(--mono); color: var(--muted); }
+  .repos a { display: inline-flex; align-items: center; min-height: 44px; }
+  .repo { display: inline-flex; align-items: center; min-height: 44px; font: 14px/1.3 var(--mono); }
+
+  /* ---------- Навыки ---------- */
+  .sk { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr); gap: 36px; margin-top: 44px; }
+  .groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-content: start; }
+  .grp { padding: 18px 18px 16px; transition: border-color .3s, box-shadow .3s; }
+  .grp.act { border-color: rgba(41, 225, 255, .6); box-shadow: 0 0 34px rgba(41, 225, 255, .14); }
+  .grp h3 { margin: 0 0 10px; font: 700 13px/1.3 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--cyan); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+  .chips li { padding: 4px 10px; border-radius: 999px; background: rgba(41, 120, 255, .1); border: 1px solid rgba(90, 170, 255, .2); font-size: 14px; line-height: 1.4; color: #d7e5fb; }
+  .gal-stage { position: sticky; top: calc(50vh - 220px); height: 440px; }
+  .sk-note { margin: 26px 0 0; max-width: 760px; color: var(--soft); font-size: 17px; }
+
+  /* ---------- Образование ---------- */
+  .edu { padding-top: 10vh; }
+  .edu-box { max-width: 760px; padding: 26px 28px; }
+  .edu-box h2 { font-size: clamp(28px, 3.6vw, 40px); }
+  .edu-box p { margin: 0; color: var(--soft); font-size: 18px; }
+
+  /* ---------- Контакты и подвал ---------- */
+  .contact { text-align: center; padding-bottom: 12vh; min-height: 90vh; display: flex; flex-direction: column; justify-content: center; }
+  .plane-spot { height: 300px; max-width: 560px; margin: 0 auto 10px; }
+  .contact .plate { max-width: 640px; margin: 0 auto 26px; }
+  .contact .lede { margin: 0 auto; }
+  footer { text-align: center; padding: 0 20px 34px; padding: 0 max(20px, env(safe-area-inset-right)) max(34px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left)); font: 12px/1.6 var(--mono); color: var(--muted); letter-spacing: .1em; text-shadow: 0 0 8px var(--bg), 0 0 3px var(--bg); }
+
+  /* ---------- Планшет и телефон ---------- */
+  @media (max-width: 1099px) {
+    .work-row { grid-template-columns: 1fr; gap: 30px; }
+    .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 999px) {
+    .proj, .sk { grid-template-columns: 1fr; }
+    .emb-col, .gal-col { display: none; }
+  }
+  @media (max-width: 860px) {
+    .bar nav { display: none; position: absolute; left: 0; right: 0; top: var(--bar); padding: 8px 12px 14px;
+      padding-left: max(12px, env(safe-area-inset-left)); padding-right: max(12px, env(safe-area-inset-right)); background: rgba(4, 6, 13, .97); border-bottom: 1px solid rgba(90, 170, 255, .15); }
+    .menu-open .bar nav { display: block; }
+    .bar nav ul { flex-direction: column; gap: 0; }
+    .bar nav a { display: flex; min-height: 48px; padding: 0 12px; font-size: 15px; }
+    .bar nav a::after { left: 12px; right: auto; width: 40px; bottom: 10px; }
+    .menu-btn { display: inline-flex; align-items: center; }
+  }
+  @media (max-width: 767px) {
+    body { font-size: 16px; }
+    .hero { padding: calc(var(--bar) + 24px) 12px 92px; padding-left: max(12px, env(safe-area-inset-left)); padding-right: max(12px, env(safe-area-inset-right)); }
+    .kicker { font-size: 11.5px; letter-spacing: .2em; }
+    .lead { margin-top: 16px; }
+    .stack { font-size: 12px; max-width: 330px; }
+    .btn { padding: 12px 18px; font-size: 14.5px; }
+    .sec { padding: 12vh 18px 5vh; padding-left: max(18px, env(safe-area-inset-left)); padding-right: max(18px, env(safe-area-inset-right)); }
+    .sec-head p, .lede, .about-text p { font-size: 16.5px; }
+    .about-grid { grid-template-columns: 1fr; gap: 8px; }
+    .net-spot { order: -1; width: 100%; max-width: 340px; }
+    .facts { grid-template-columns: 1fr; gap: 12px; }
+    .groups { grid-template-columns: 1fr; }
+    .term-body { font-size: 11.5px; padding: 12px; }
+    .term-in { font-size: 13px; padding: 4px 12px 12px; }
+    .tg { width: 12ch; }
+    .card { padding: 20px 18px 16px; background: rgba(7, 11, 24, .8); }
+    .card h3 { font-size: 22px; }
+    .plane-spot { height: 220px; }
+    .plate::before { inset: -20px -18px; }
+  }
+
+  /* iOS увеличивает страницу при фокусе на поле со шрифтом меньше 16 px */
+  @media (pointer: coarse), (max-width: 767px) { .term-in input { font-size: 16px; } }
+
+  /* ---------- Режим превью для og.jpg ---------- */
+  .og .bar, .og .sub, .og .meta, .og .stack, .og .cta, .og .hint, .og .cglow, .og .skip { display: none !important; }
+  .og .hero { padding: 0 16px; }
+  .og, .og body { overflow: hidden; scrollbar-width: none; }
+
+  /* ---------- Запасной фон без WebGL ---------- */
+  .no-gl body {
+    background:
+      radial-gradient(1100px 620px at 18% 8%, rgba(47, 107, 255, .26), transparent 62%),
+      radial-gradient(900px 560px at 88% 55%, rgba(139, 92, 255, .18), transparent 60%),
+      radial-gradient(700px 500px at 40% 95%, rgba(41, 225, 255, .10), transparent 60%),
+      radial-gradient(circle, rgba(41, 225, 255, .16) 1px, transparent 1.6px) 0 0 / 26px 26px,
+      var(--bg);
+    background-attachment: fixed;
+  }
+  .no-gl #gfx, .no-gl .spot, .no-gl .emb-col, .no-gl .gal-col, .no-gl .lane-tag { display: none; }
+  .no-gl .proj, .no-gl .sk { grid-template-columns: 1fr; }
+  .no-gl .about-grid { grid-template-columns: 1fr; }
+  .no-gl #nick { color: transparent; -webkit-text-stroke: 0; background: linear-gradient(95deg, #3b7bff 10%, #29e1ff 50%, #8b5cff 90%);
+    -webkit-background-clip: text; background-clip: text; filter: drop-shadow(0 0 24px rgba(41, 225, 255, .35)); }
+  /* Без частиц ветку графа рисует CSS */
+  .no-gl .steps::before { content: ""; position: absolute; background: linear-gradient(90deg, transparent, rgba(41, 225, 255, .5) 6%, rgba(41, 225, 255, .5) 94%, transparent); }
+  @media (min-width: 1100px) { .no-gl .steps::before { left: 0; right: 0; top: 101px; height: 2px; } }
+  @media (max-width: 1099px) { .no-gl .steps::before { left: 21px; top: 0; bottom: 0; width: 2px; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hint::after, .caret, .ln { animation: none; }
+    .btn, .card, .dot, .mark, .tl-card, .step-in { transition: none; }
   }
 </style>
+<noscript><style>
+  #nick { color: transparent; -webkit-text-stroke: 0; background: linear-gradient(95deg, #3b7bff 10%, #29e1ff 50%, #8b5cff 90%); -webkit-background-clip: text; background-clip: text; }
+  .emb-col, .gal-col { display: none; }
+  .proj, .sk { grid-template-columns: 1fr; }
+</style></noscript>
 </head>
 <body>
-<main>
-  <header>
-    <div class="nick">SHOTBOTik</div>
-    <h1>Сергей</h1>
-    <p class="lead">Разработка и автоматизация с нейросетями</p>
-    <p class="meta">22 года · Воронеж · делаю проекты с 2022 года</p>
-  </header>
+<a class="skip" href="#main">К содержанию</a>
+<canvas id="gfx" aria-hidden="true"></canvas>
+<div class="cglow" aria-hidden="true"></div>
 
-  <section class="note">
-    <h2>Как я работаю</h2>
-    <p>Весь код пишут нейросети — Claude Code. Я ставлю задачу, делю её на части и проверяю результат: план проходит критику, по правилу тесты пишутся до кода, перед вливанием — ревью и тесты. Учился сам, по ходу проектов.</p>
+<header class="bar" id="bar">
+  <a class="brand" href="#top">shotbotik<b>.me</b></a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Меню</button>
+  <nav id="nav" aria-label="Разделы">
+    <ul>
+      <li><a href="#about">Обо мне</a></li>
+      <li><a href="#work">Как я работаю</a></li>
+      <li><a href="#experience">Опыт</a></li>
+      <li id="nav-projects"><a href="#projects">Проекты</a></li>
+      <li><a href="#skills">Навыки</a></li>
+      <li><a href="#contact">Связаться</a></li>
+    </ul>
+  </nav>
+  <div class="progress" aria-hidden="true"><i id="prog"></i></div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top" aria-labelledby="nick">
+    <div class="hero-in">
+      <p class="kicker"><i></i>Сергей · Воронеж</p>
+      <h1 id="nick"><span>SHOTBOTik</span></h1>
+      <div class="hero-txt">
+      <p class="lead">Разработка и автоматизация с нейросетями</p>
+      <p class="sub">Код пишет Claude Code. Я ставлю задачу, делю её на части и проверяю результат</p>
+      <p class="meta">22 года · делаю проекты с 2022 года</p>
+      <p class="stack">Claude Code · AI-агенты · MCP · TypeScript · Kotlin · Rust</p>
+      </div>
+      <p class="cta">
+        <a class="btn primary" href="https://t.me/SHOTBOTik"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.4 3.6 2.9 10.8c-1 .4-1 1.6.1 1.9l4.6 1.4 1.8 5.6c.3.8 1.3 1 1.9.4l2.6-2.4 4.6 3.4c.8.6 1.9.1 2.1-.9l3.1-14.9c.2-1.2-.9-2.1-2.3-1.7Zm-3.5 4.3-8.3 7.4-.3 3-1.3-4.3 9.4-6.3c.4-.2.7.1.5.2Z"/></svg>Telegram</a>
+        <a class="btn" href="mailto:hi@shotbotik.me">hi@shotbotik.me</a>
+        <a class="btn" href="https://github.com/SHOTBOTik">GitHub</a>
+      </p>
+    </div>
+    <div class="hint" aria-hidden="true">листайте</div>
   </section>
 
-  <section>
-    <h2>Сейчас — JustLauncher</h2>
-    <p>Лаунчер Minecraft, делаем с командой Suppy. Моя зона — админка, ещё бэкенд сайта и реклама.</p>
-    <h3>Админка — React и TypeScript</h3>
-    <ul>
-      <li>Модерация, журнал действий, доска задач с ответственными и нагрузкой, права ролей. Редизайн и своя дизайн-система.</li>
-      <li>Статистика продукта прямо в админке вместо Grafana: удержание, онлайн, воронки, любой период. Тяжёлые запросы к PostgreSQL переписаны, расчёты прогреваются в фоне.</li>
-      <li>Раздел «Реклама»: данные Яндекс Директа через API рядом с метриками продукта — воронка от показа до запуска лаунчера.</li>
-    </ul>
-    <h3>Бэкенд сайта — Kotlin, Spring, PostgreSQL</h3>
-    <ul>
-      <li>Лента, модерация, доска задач. Миграции Liquibase, интеграционные тесты, защита от одновременных правок.</li>
-      <li>Автотесты — Playwright, проверки в GitLab CI.</li>
-    </ul>
-    <h3>Тестирование и процессы</h3>
-    <ul>
-      <li>Хаос-тест десктоп-клиента: дефекты с шагами воспроизведения. Интерфейсом управлял через UI Automation из PowerShell.</li>
-      <li>Регламент оценки задач и сроков для команды — по практикам Linear, Kanban и Shape Up.</li>
-    </ul>
-    <h3>Реклама</h3>
-    <ul>
-      <li>Яндекс Директ, цели и офлайн-конверсии, Яндекс Метрика.</li>
-      <li>Считаю, во сколько обходится новый и вовлечённый игрок.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Другие проекты с Suppy</h2>
-    <ul>
-      <li><b>Автоматизация продаж на FunPay:</b> автоинвайты, продажа подписок, автоматическая доставка игр, нейросеть в чате с покупателями.</li>
-      <li><b>Бот для ВКонтакте.</b></li>
-      <li><b>Сервер Minecraft.</b></li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Свои проекты</h2>
-    <ul>
-      <li><b>Пульт</b> — своя оболочка над Claude Code: окна по темам с памятью и журналом. Задачи с кодом идут по плану: критик плана, тесты до кода, команда агентов в отдельных git worktree, ревью перед вливанием. Node.js, TypeScript, React, Claude Agent SDK, MCP.</li>
-      <li><b>Зеркало сделок</b> — сервис на Node.js повторяет сделки выбранных трейдеров через REST API биржи с подписью запросов. «Сторож» следит за процессами и перезапускает зависшие. Новые версии сначала прогоняю вхолостую и на прошлых днях.</li>
-      <li><b>Скрининг счетов трейдеров</b> — сбор истории сделок по большому числу счетов и отбор по ней.</li>
-      <li><b>Проверка торговых сигналов и ботов</b> на истории цен — несколько независимых расчётов с AI-агентами и сверка между ними.</li>
-      <li><b>Автопродажа предметов CS2</b> — проект с партнёром. Моя часть — доставка предметов и переводы денег: журнал и сверка переводов с API маркетплейса, список разрешённых получателей, перезапуск фоновых задач после сбоя. Rust, PostgreSQL.</li>
-      <li><b>Русская локализация модпака Minecraft</b> (Craft to Exile 2) — сборка и автопроверка скриптами на Node.js.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>С чем работал</h2>
-    <ul class="tags">
-      <li>Claude Code</li>
-      <li>AI-агенты</li>
-      <li>MCP</li>
-      <li>Claude Agent SDK</li>
-      <li>Node.js</li>
-      <li>TypeScript</li>
-      <li>React</li>
-      <li>Kotlin</li>
-      <li>Spring</li>
-      <li>Rust</li>
-      <li>PostgreSQL</li>
-      <li>SQL</li>
-      <li>Liquibase</li>
-      <li>REST API</li>
-      <li>Playwright</li>
-      <li>GitLab CI</li>
-      <li>Gradle</li>
-      <li>PowerShell</li>
-      <li>Grafana</li>
-      <li>Яндекс Директ и API</li>
-      <li>Яндекс Метрика</li>
+  <section class="sec" id="about" aria-labelledby="h-about">
+    <div class="about-grid">
+      <div class="about-text plate">
+        <span class="sec-num" aria-hidden="true"></span>
+        <h2 id="h-about">Обо мне</h2>
+        <p>Мне 22, я из Воронежа. С 2022 года делаю проекты с командой Suppy. Начинали с автоматизации продаж на FunPay, сейчас делаем лаунчер Minecraft JustLauncher. Там моя зона — админка, бэкенд сайта и реклама. Ещё веду свои проекты: Пульт — мой интерфейс поверх Claude Code, — сервисы на Node.js и Rust.</p>
+        <p>Весь код пишут нейросети — Claude Code. Это мой способ работы, и я его не скрываю. Я ставлю задачу, делю её на части и проверяю план, тесты и результат. Учился сам, по ходу проектов.</p>
+      </div>
+      <div class="spot net-spot" id="netSpot" aria-hidden="true"></div>
+    </div>
+    <ul class="facts">
+      <li class="panel"><b>С 2022 года — в команде Suppy.</b><span>От FunPay до лаунчера Minecraft.</span></li>
+      <li class="panel"><b>На стыке трёх областей.</b><span>Код, цифры продукта и реклама — в одном проекте.</span></li>
+      <li class="panel"><b>Код пишут агенты.</b><span>Задача, план и приёмка — на мне.</span></li>
+      <li class="panel"><b>Учился сам.</b><span>По ходу проектов.</span></li>
     </ul>
   </section>
 
-  <section>
-    <h2>Образование</h2>
-    <p>Неоконченное высшее: ВГУ, «Информатика и вычислительная техника», 3 курса.</p>
+  <section class="sec" id="work" aria-labelledby="h-work">
+    <div class="sec-head plate">
+      <span class="sec-num" aria-hidden="true"></span>
+      <h2 id="h-work">Как я работаю</h2>
+      <p>Весь код пишут нейросети — Claude Code. Я ставлю задачу, делю её на части и проверяю результат. План проходит критику, тесты по правилу пишутся до кода, перед вливанием — ревью и тесты.</p>
+    </div>
+    <ol class="steps" id="steps">
+      <li class="step"><span class="dot" aria-hidden="true"></span><div class="step-in"><h3>План</h3><p>Цель, части и у каждой свои файлы. Критерии приёмки такие, что на каждый можно ответить «да» или «нет».</p></div></li>
+      <li class="step"><span class="dot" aria-hidden="true"></span><div class="step-in"><h3>Критик плана</h3><p>Отдельный агент ищет, почему план сломается. План правлю до запуска.</p></div></li>
+      <li class="step"><span class="dot" aria-hidden="true"></span><div class="step-in"><h3>Тесты до кода</h3><p>Это правило процесса: красные тесты идут отдельным коммитом, исполнители их не меняют.</p></div></li>
+      <li class="step"><span class="dot" aria-hidden="true"></span><span class="lane-tag" aria-hidden="true">git worktree ×4</span><div class="step-in"><h3>Команда агентов</h3><p>Части идут волнами, параллельно. У каждой своя ветка и свой git worktree.</p></div></li>
+      <li class="step"><span class="dot" aria-hidden="true"></span><div class="step-in"><h3>Ревью</h3><p>Агент со свежим взглядом смотрит дифф. Находки blocker и major исправляются до вливания.</p></div></li>
+      <li class="step"><span class="dot" aria-hidden="true"></span><div class="step-in"><h3>Проверки</h3><p>Тесты, e2e в браузере, скриншоты интерфейса против эталона.</p></div></li>
+      <li class="step"><span class="dot" aria-hidden="true"></span><div class="step-in"><h3>Влито</h3><p>Перед вливанием ставится метка отката, отчёт приходит мне.</p></div></li>
+    </ol>
+    <div class="work-row">
+      <div class="term" id="term">
+        <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>пульт — пример сессии</span></div>
+        <p class="sr">Пример сессии в терминале: задача, план, критик плана, тесты до кода — красные, агенты ×4, каждый в своём git worktree, тесты зелёные, ревью, влито в main. После примера можно вводить команды: help, about, projects, skills, contact, clear.</p>
+        <div class="term-body" id="termBody" role="log" aria-live="polite"></div>
+        <form class="term-in" id="termForm" autocomplete="off">
+          <label class="sr" for="termIn">Команда терминала</label>
+          <span class="pr" aria-hidden="true">пульт ›</span>
+          <input id="termIn" name="cmd" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" placeholder="help" enterkeyhint="send">
+        </form>
+      </div>
+      <ul class="rules">
+        <li class="panel">Отчёт агента — мнение. Неверную находку отклоняю с объяснением.</li>
+        <li class="panel">Обратимые решения агенты принимают сами. Необратимое и всё, что уходит наружу, — только после моего «да».</li>
+        <li class="panel">Секреты лежат отдельно от памяти и журнала агентов.</li>
+      </ul>
+    </div>
   </section>
 
-  <section>
-    <h2>Связаться</h2>
-    <p class="contacts">
-      <a class="button" href="https://t.me/SHOTBOTik">Telegram</a>
-      <a class="button secondary" href="mailto:hi@shotbotik.me">hi@shotbotik.me</a>
-      <a class="button secondary" href="https://github.com/SHOTBOTik">GitHub</a>
+  <section class="sec" id="experience" aria-labelledby="h-exp">
+    <div class="sec-head plate">
+      <span class="sec-num" aria-hidden="true"></span>
+      <h2 id="h-exp">Опыт</h2>
+    </div>
+    <ol class="tl" id="tl">
+      <li><span class="mark" aria-hidden="true"></span><div class="tl-card panel"><p class="when">2022</p><h3>Suppy: автоматизация продаж на FunPay</h3><p class="txt">Автоинвайты, продажа подписок, автоматическая доставка игр, нейросеть в чате с покупателями.</p></div></li>
+      <li><span class="mark" aria-hidden="true"></span><div class="tl-card panel"><p class="when">Дальше</p><h3>Бот для ВКонтакте и сервер Minecraft</h3><p class="txt">Тоже с командой Suppy.</p></div></li>
+      <li><span class="mark" aria-hidden="true"></span><div class="tl-card panel"><p class="when">Сейчас</p><h3>JustLauncher, лаунчер Minecraft</h3><p class="txt">Админка, бэкенд сайта, тестирование, процессы команды.</p></div></li>
+      <li><span class="mark" aria-hidden="true"></span><div class="tl-card panel"><p class="when">С сентября 2026</p><h3>Реклама JustLauncher в Яндекс Директе</h3><p class="txt">Разбор поисковых запросов, цели и офлайн-конверсии, считаю, во сколько обходится новый игрок.</p></div></li>
+      <li><span class="mark" aria-hidden="true"></span><div class="tl-card panel"><p class="when">Параллельно</p><h3>Свои проекты</h3><p class="txt">Пульт, сервис повтора сделок, скрининг счетов, автопродажа предметов CS2 с партнёром.</p></div></li>
+    </ol>
+    <p class="tl-cap">Suppy — проекты с командой, с 2022 года по сей день</p>
+  </section>
+
+  <section class="sec" id="projects" aria-labelledby="h-proj">
+    <div class="sec-head plate">
+      <span class="sec-num" aria-hidden="true"></span>
+      <h2 id="h-proj">Проекты</h2>
+    </div>
+    <div class="proj">
+      <div class="emb-col" aria-hidden="true">
+        <div class="emb-stage"><div class="spot emb-spot" id="embSpot"></div><p class="emb-cap" id="embCap">JustLauncher</p></div>
+      </div>
+      <div class="cards" id="cards">
+        <article class="card" data-emb="block">
+          <div class="card-top"><span class="badge">Suppy · сейчас</span><span class="idx" aria-hidden="true">01</span></div>
+          <h3>JustLauncher</h3>
+          <p>Лаунчер Minecraft. Делаем командой Suppy, сайт — <a href="https://justlauncher.org">justlauncher.org</a>.</p>
+          <p class="role"><b>Моя зона:</b> админка, бэкенд сайта и реклама, плюс тестирование и процессы.</p>
+          <details>
+            <summary>Что сделано</summary>
+            <div class="det">
+              <h4>Админка <span>React, TypeScript</span></h4>
+              <ul>
+                <li>модерация жалоб и статей, журнал действий, фильтры, права ролей;</li>
+                <li>доска задач с зонами ответственности, ответственными и нагрузкой;</li>
+                <li>переделаны главная, «Мои задачи» и карточка сотрудника, добавлена история статусов задач;</li>
+                <li>редизайн и своя дизайн-система: Tailwind, графики на Recharts.</li>
+              </ul>
+              <h4>Статистика продукта — прямо в админке вместо Grafana</h4>
+              <ul>
+                <li>удержание, онлайн, воронки за любой период;</li>
+                <li>тяжёлые запросы к PostgreSQL переписаны, их планы разобраны через EXPLAIN;</li>
+                <li>у расчётов есть бюджет времени и кеш, прогрев идёт в фоне по расписанию;</li>
+                <li>аудит метрик дашборда Grafana на корректность.</li>
+              </ul>
+              <h4>Раздел «Реклама»</h4>
+              <p>Отчёты Яндекс Директа через API, рядом с метриками продукта. Воронка «показ → клик → скачивание → первый запуск», данные обновляются каждый час.</p>
+              <h4>Бэкенд сайта <span>Kotlin, Spring, PostgreSQL</span></h4>
+              <ul>
+                <li>несколько сервисов: лента, посты и статьи, комментарии, модерация, доска задач;</li>
+                <li>миграции Liquibase;</li>
+                <li>интеграционные тесты на настоящем PostgreSQL;</li>
+                <li>защита от одновременных правок — оптимистическая блокировка;</li>
+                <li>описываю контракты API для фронтенда.</li>
+              </ul>
+              <h4>Тестирование</h4>
+              <ul>
+                <li>e2e-тесты интерфейса на Playwright, скриншоты сверяются с эталоном, проверки идут в GitLab CI;</li>
+                <li>разбор нестабильных тестов и нехватки памяти на CI;</li>
+                <li>исследовательское тестирование десктоп-клиента «как злой пользователь»: дефекты с шагами воспроизведения. Интерфейсом управлял через Windows UI Automation из PowerShell.</li>
+              </ul>
+              <h4>Процессы и выпуски</h4>
+              <ul>
+                <li>регламент приоритизации задач и оценки сроков для команды: баллы по критериям, у задачи один ответственный, размер и крайний срок. Сверен с практиками Linear, Kanban и Shape Up и встроен в доску задач;</li>
+                <li>выпуски сервисов через пайплайн GitLab: до запуска проверяю, переживут ли миграции старый код, после — живой сервис.</li>
+              </ul>
+              <h4>Реклама — с сентября 2026</h4>
+              <ul>
+                <li>Яндекс Директ: разбор поисковых запросов, минус-фразы;</li>
+                <li>цели и офлайн-конверсии в Яндекс Метрике: стратегия учится на первом запуске лаунчера, а не на клике; проверяю метки атрибуции;</li>
+                <li>считаю, во сколько обходится новый и вовлечённый игрок;</li>
+                <li>маркетинговый план по одной воронке: реклама → сайт → скачивание → первый запуск → удержание.</li>
+              </ul>
+            </div>
+          </details>
+          <ul class="tags" aria-label="Стек"><li>React</li><li>TypeScript</li><li>Tailwind</li><li>Recharts</li><li>Kotlin</li><li>Spring</li><li>PostgreSQL</li><li>Liquibase</li><li>Playwright</li><li>GitLab CI</li><li>Gradle</li><li>API Яндекс Директа</li><li>Яндекс Метрика</li><li>Grafana</li></ul>
+        </article>
+
+        <article class="card" data-emb="windows">
+          <div class="card-top"><span class="badge">свой проект</span><span class="idx" aria-hidden="true">02</span></div>
+          <h3>Пульт</h3>
+          <p>Мой интерфейс поверх Claude Code. В нём я веду все свои проекты, и этот сайт тоже.</p>
+          <p class="role"><b>Моя часть:</b> задача, архитектура, проверка и приёмка. Код пишут нейросети.</p>
+          <details>
+            <summary>Что умеет</summary>
+            <div class="det">
+              <ul>
+                <li><b>Окна по темам.</b> У каждого окна своя память, правила и журнал. Сессии под капотом сменяются сами, нить переносится сводкой.</li>
+                <li><b>Память по ярусам:</b> ядро, темы, архив. Её обновляет «хранитель» в фоне. Секреты лежат отдельно от памяти. Старые чаты Claude Code импортированы по окнам, секреты из них вычищены.</li>
+                <li><b>Задача с кодом:</b> план приходит карточкой с кнопкой «Поехали», его проверяет критик плана; волна 0 — контракт и красные тесты, дальше части идут параллельно, каждая в своём git worktree; потом ревью и вливание с меткой отката; в конце отчёт и кнопки «Принять» / «Удалить».</li>
+                <li><b>Вливание</b> — сразу, после ревью или через MR.</li>
+                <li><b>Лимиты подписки:</b> учёт расхода по моделям и агентам, ожидание сброса лимита и автопробуждение.</li>
+                <li><b>Кэш промпта:</b> замерил, как работают кэш промпта и автосжатие контекста Claude Code, и подстроил под это архитектуру. Лимиты подписки здесь — главная мера затрат.</li>
+                <li><b>Проверки:</b> Vitest на сервере и клиенте, UI-проверки в headless-браузере со скриншотами, живые прогоны на дешёвой модели во временном каталоге.</li>
+              </ul>
+              <h4>Устройство</h4>
+              <ul>
+                <li>сервер на Node.js и TypeScript с Claude Agent SDK;</li>
+                <li>клиент на React, связь по WebSocket;</li>
+                <li>свои MCP-инструменты для агентов;</li>
+                <li>десктоп-оболочка на WebView2.</li>
+              </ul>
+              <p>Работает на подписке Claude через Claude Code. Это личный инструмент, а не продукт.</p>
+            </div>
+          </details>
+          <ul class="tags" aria-label="Стек"><li>Node.js</li><li>TypeScript</li><li>React</li><li>Claude Agent SDK</li><li>MCP</li><li>WebSocket</li><li>Vitest</li></ul>
+          <template class="tpl-repos"><p class="repos">Вынесено в открытый код: <a href="https://github.com/SHOTBOTik/leak-guard">leak-guard</a> · <a href="https://github.com/SHOTBOTik/claude-code-spend">claude-code-spend</a> · <a href="https://github.com/SHOTBOTik/win-proc-guard">win-proc-guard</a></p></template>
+        </article>
+
+        <article class="card" data-emb="candles">
+          <div class="card-top"><span class="badge">свой проект</span><span class="idx" aria-hidden="true">03</span></div>
+          <h3>Сервис повтора сделок</h3>
+          <p>Сервис на Node.js повторяет сделки выбранных трейдеров через REST API биржи с подписью запросов.</p>
+          <p class="role"><b>Моя часть:</b> задача, архитектура, проверка и приёмка. Код пишут нейросети.</p>
+          <details>
+            <summary>Как устроен</summary>
+            <div class="det">
+              <ul>
+                <li>отдельные процессы: источники данных пишут снимки, исполнитель по ним выставляет ордера;</li>
+                <li>«сторож» следит за остальными процессами: пульс, перезапуск зависших, алерты без дублей, периодическая сводка в лог;</li>
+                <li>надёжность: замки от двойного запуска, автоперезапуск, автозапуск через Планировщик Windows, ротация логов;</li>
+                <li>перед обновлением — сухой прогон без ордеров и повтор прошлых дней на сохранённой истории цен;</li>
+                <li>скрипт обновления можно запускать повторно без вреда, перед изменениями он делает бэкап;</li>
+                <li>новые версии прошли разборы, критику плана и код-ревью агентами.</li>
+              </ul>
+            </div>
+          </details>
+          <ul class="tags" aria-label="Стек"><li>Node.js</li><li>REST API</li><li>HMAC-подпись запросов</li><li>Bash</li><li>PowerShell</li><li>Планировщик Windows</li></ul>
+          <template class="tpl-repos"><p class="repos">Вынесено в открытый код: <a href="https://github.com/SHOTBOTik/proc-supervisor-kit">proc-supervisor-kit</a></p></template>
+        </article>
+
+        <article class="card" data-emb="funnel">
+          <div class="card-top"><span class="badge">свой проект</span><span class="idx" aria-hidden="true">04</span></div>
+          <h3>Анализ данных: скрининг счетов и проверка сигналов</h3>
+          <p>Скрининг счетов трейдеров и проверка торговых сигналов и ботов на истории цен.</p>
+          <p class="role"><b>Моя часть:</b> задача, архитектура, проверка и приёмка. Код пишут нейросети.</p>
+          <details>
+            <summary>Что сделано</summary>
+            <div class="det">
+              <ul>
+                <li><b>Скрининг счетов трейдеров:</b> сбор истории сделок по большому числу счетов через публичные API и отбор по ней.</li>
+                <li><b>Проверка торговых сигналов и ботов на истории цен:</b> несколько независимых расчётов с AI-агентами и сверка между ними.</li>
+              </ul>
+            </div>
+          </details>
+          <ul class="tags" aria-label="Стек"><li>Node.js</li><li>TypeScript</li><li>публичные API</li><li>AI-агенты</li></ul>
+          <template class="tpl-repos"><p class="repos">Вынесено в открытый код: <a href="https://github.com/SHOTBOTik/polite-fetch">polite-fetch</a> · <a href="https://github.com/SHOTBOTik/resumable-run">resumable-run</a></p></template>
+        </article>
+
+        <article class="card" data-emb="crate">
+          <div class="card-top"><span class="badge">с партнёром</span><span class="idx" aria-hidden="true">05</span></div>
+          <h3>Автопродажа предметов CS2</h3>
+          <p>Сервис автоматической продажи игровых предметов через API маркетплейса. Проект с партнёром.</p>
+          <p class="role"><b>Моя часть:</b> доставка предметов и денежные переводы.</p>
+          <details>
+            <summary>Что сделано</summary>
+            <div class="det">
+              <ul>
+                <li>эндпоинт переводов защищён токеном, получатели — только из списка разрешённых, ключ списка зашифрован;</li>
+                <li>журнал переводов и сверка с API маркетплейса, отказы API разобраны по типам;</li>
+                <li>таймауты на ожидания;</li>
+                <li>супервизор фоновых задач: перезапускает задачу после сбоя, и сбой одной задачи не роняет остальные;</li>
+                <li>перед вливанием — код-ревью и зелёный CI: форматирование, Clippy без предупреждений, тесты.</li>
+              </ul>
+            </div>
+          </details>
+          <ul class="tags" aria-label="Стек"><li>Rust</li><li>PostgreSQL</li><li>GitLab CI</li></ul>
+        </article>
+
+        <article class="card" data-emb="chat">
+          <div class="card-top"><span class="badge">Suppy</span><span class="idx" aria-hidden="true">06</span></div>
+          <h3>Автоматизация продаж на FunPay</h3>
+          <p>Автоинвайты, продажа подписок, автоматическая доставка игр, нейросеть в чате с покупателями.</p>
+        </article>
+
+        <article class="card" data-emb="rack">
+          <div class="card-top"><span class="badge">Suppy</span><span class="idx" aria-hidden="true">07</span></div>
+          <h3>Бот для ВКонтакте и сервер Minecraft</h3>
+          <p>Ранние проекты с командой.</p>
+        </article>
+
+        <article class="card" data-emb="ya">
+          <div class="card-top"><span class="badge">свой проект</span><span class="idx" aria-hidden="true">08</span></div>
+          <h3>Русская локализация модпака Minecraft</h3>
+          <p>Перевод модпака Craft to Exile 2 с нейросетью.</p>
+          <details>
+            <summary>Как сделано</summary>
+            <div class="det">
+              <ul>
+                <li>ресурспак и файлы квестов собираются скриптами на Node.js;</li>
+                <li>ключи проверяются автоматически;</li>
+                <li>есть глоссарий терминов, ошибки ищутся по выборке.</li>
+              </ul>
+            </div>
+          </details>
+          <ul class="tags" aria-label="Стек"><li>Node.js</li><li>AI-агенты</li></ul>
+        </article>
+
+        <article class="card" data-emb="code">
+          <div class="card-top"><span class="badge">свой проект</span><span class="idx" aria-hidden="true">09</span></div>
+          <h3>Этот сайт</h3>
+          <p>Собран с Claude Code: один HTML-файл, частицы на чистом WebGL2 без библиотек, никаких внешних запросов. На телефоне и при «меньше анимации» — облегчённая версия.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="skills" aria-labelledby="h-skills">
+    <div class="sec-head plate">
+      <span class="sec-num" aria-hidden="true"></span>
+      <h2 id="h-skills">Навыки</h2>
+    </div>
+    <div class="sk">
+      <div class="groups" id="groups">
+        <div class="grp panel"><h3>AI и агенты</h3><ul class="chips"><li>Claude Code</li><li>AI-агенты</li><li>Claude Agent SDK</li><li>MCP</li><li>LLM</li><li>постановка задач агентам</li><li>критика планов</li><li>код-ревью</li></ul></div>
+        <div class="grp panel"><h3>Бэкенд</h3><ul class="chips"><li>Kotlin</li><li>Spring</li><li>Node.js</li><li>Rust</li><li>PostgreSQL</li><li>SQL и оптимизация запросов</li><li>Liquibase</li><li>REST API</li><li>WebSocket</li></ul></div>
+        <div class="grp panel"><h3>Фронтенд</h3><ul class="chips"><li>React</li><li>TypeScript</li><li>Tailwind</li><li>Recharts</li><li>дизайн-система</li></ul></div>
+        <div class="grp panel"><h3>Тесты и качество</h3><ul class="chips"><li>Playwright</li><li>e2e и скриншотные проверки</li><li>интеграционные тесты</li><li>Vitest</li><li>исследовательское тестирование</li><li>тесты до кода</li></ul></div>
+        <div class="grp panel"><h3>Инструменты</h3><ul class="chips"><li>Git и git worktree</li><li>GitLab CI</li><li>CI/CD</li><li>GitLab API</li><li>Gradle</li><li>PowerShell</li><li>Bash</li><li>Windows UI Automation</li></ul></div>
+        <div class="grp panel"><h3>Аналитика и реклама</h3><ul class="chips"><li>Яндекс Директ и его API</li><li>Яндекс Метрика</li><li>офлайн-конверсии</li><li>Grafana</li><li>продуктовые метрики: удержание, когорты, воронки</li><li>веб-аналитика</li></ul></div>
+        <div class="grp panel"><h3>Процессы</h3><ul class="chips"><li>декомпозиция задач</li><li>приоритизация и оценка сроков</li><li>техническая документация</li></ul></div>
+      </div>
+      <div class="gal-col" aria-hidden="true"><div class="gal-stage"><div class="spot" id="galSpot" style="height:100%"></div></div></div>
+    </div>
+    <p class="sk-note plate">Код в этих проектах пишут нейросети. Моя часть — задача, архитектура, проверка и приёмка.</p>
+  </section>
+
+  <section class="sec edu" id="education" aria-labelledby="h-edu">
+    <div class="edu-box panel">
+      <span class="sec-num" aria-hidden="true"></span>
+      <h2 id="h-edu">Образование</h2>
+      <p>Неоконченное высшее: ВГУ, «Информатика и вычислительная техника», 3 курса. Дальше учился сам, по ходу проектов.</p>
+    </div>
+  </section>
+
+  <section class="sec contact" id="contact" aria-labelledby="h-contact">
+    <div class="spot plane-spot" id="planeSpot" aria-hidden="true"></div>
+    <div class="plate">
+      <span class="sec-num" aria-hidden="true"></span>
+      <h2 id="h-contact">Связаться</h2>
+      <p class="lede">Пишите в Telegram или на почту. Формат — удалённо, гибрид — в Воронеже.</p>
+    </div>
+    <p class="cta">
+      <a class="btn primary" id="tgBtn" href="https://t.me/SHOTBOTik"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.4 3.6 2.9 10.8c-1 .4-1 1.6.1 1.9l4.6 1.4 1.8 5.6c.3.8 1.3 1 1.9.4l2.6-2.4 4.6 3.4c.8.6 1.9.1 2.1-.9l3.1-14.9c.2-1.2-.9-2.1-2.3-1.7Zm-3.5 4.3-8.3 7.4-.3 3-1.3-4.3 9.4-6.3c.4-.2.7.1.5.2Z"/></svg>Telegram</a>
+      <a class="btn" href="mailto:hi@shotbotik.me">hi@shotbotik.me</a>
+      <a class="btn" href="https://github.com/SHOTBOTik">GitHub</a>
     </p>
   </section>
-
-  <footer>Сергей · SHOTBOTik · 2026</footer>
 </main>
+<footer>Сергей · SHOTBOTik · 2026 · сайт собран с Claude Code</footer>
+
+<!-- «Открытый код»: всё ниже вставляется в страницу, только когда у <html> стоит data-oss="on" -->
+<template id="tpl-oss-nav"><li><a href="#oss">Открытый код</a></li></template>
+<template id="tpl-oss">
+  <section class="sec" id="oss" aria-labelledby="h-oss">
+    <div class="sec-head plate">
+      <span class="sec-num" aria-hidden="true"></span>
+      <h2 id="h-oss">Открытый код</h2>
+      <p>Небольшие инструменты, вынесенные из моих проектов. Код написан с Claude Code, задача, разбор и проверка — мои.</p>
+    </div>
+    <div class="proj">
+      <div class="emb-col" aria-hidden="true"></div>
+      <div class="cards">
+        <article class="card" data-emb="shield">
+          <div class="card-top"><span class="badge">открытый код</span><span class="idx" aria-hidden="true">01</span></div>
+          <h3>leak-guard</h3>
+          <p>Вычищает секреты из текста перед отправкой в LLM. Перед публикацией проверяет репозиторий и его git-историю на секреты и личные данные. Значения не печатает.</p>
+          <a class="repo" href="https://github.com/SHOTBOTik/leak-guard">github.com/SHOTBOTik/leak-guard</a>
+        </article>
+        <article class="card" data-emb="bars">
+          <div class="card-top"><span class="badge">открытый код</span><span class="idx" aria-hidden="true">02</span></div>
+          <h3>claude-code-spend</h3>
+          <p>Учёт токенов Claude по моделям, сессиям и дням: разбивка по кэшу промпта и оценка стоимости.</p>
+          <a class="repo" href="https://github.com/SHOTBOTik/claude-code-spend">github.com/SHOTBOTik/claude-code-spend</a>
+        </article>
+        <article class="card" data-emb="tree">
+          <div class="card-top"><span class="badge">открытый код</span><span class="idx" aria-hidden="true">03</span></div>
+          <h3>win-proc-guard</h3>
+          <p>Завершает дерево процессов на Windows, только если PID всё ещё принадлежит тому же процессу. Замок от двойного запуска.</p>
+          <a class="repo" href="https://github.com/SHOTBOTik/win-proc-guard">github.com/SHOTBOTik/win-proc-guard</a>
+        </article>
+        <article class="card" data-emb="pulse">
+          <div class="card-top"><span class="badge">открытый код</span><span class="idx" aria-hidden="true">04</span></div>
+          <h3>proc-supervisor-kit</h3>
+          <p>Сторож для долгоживущих Node-процессов на Windows: пульс, перезапуск зависших, алерты без дублей, безопасный деплой с сухим прогоном.</p>
+          <a class="repo" href="https://github.com/SHOTBOTik/proc-supervisor-kit">github.com/SHOTBOTik/proc-supervisor-kit</a>
+        </article>
+        <article class="card" data-emb="gauge">
+          <div class="card-top"><span class="badge">открытый код</span><span class="idx" aria-hidden="true">05</span></div>
+          <h3>polite-fetch</h3>
+          <p>HTTP-клиент для API с лимитами: ограничение частоты с весами запросов, повторы с паузой и учётом Retry-After, таймауты, кэш на диске.</p>
+          <a class="repo" href="https://github.com/SHOTBOTik/polite-fetch">github.com/SHOTBOTik/polite-fetch</a>
+        </article>
+        <article class="card" data-emb="steps">
+          <div class="card-top"><span class="badge">открытый код</span><span class="idx" aria-hidden="true">06</span></div>
+          <h3>resumable-run</h3>
+          <p>Долгие проходы по большим спискам: контрольные точки, продолжение после сбоя, шардирование, пагинация без дублей.</p>
+          <a class="repo" href="https://github.com/SHOTBOTik/resumable-run">github.com/SHOTBOTik/resumable-run</a>
+        </article>
+      </div>
+    </div>
+  </section>
+</template>
+<template id="tpl-oss-ld">[
+  { "@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "leak-guard", "description": "Вычищает секреты из текста перед отправкой в LLM. Перед публикацией проверяет репозиторий и его git-историю на секреты и личные данные. Значения не печатает.", "codeRepository": "https://github.com/SHOTBOTik/leak-guard", "author": { "@id": "https://shotbotik.me/#me" } },
+  { "@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "claude-code-spend", "description": "Учёт токенов Claude по моделям, сессиям и дням: разбивка по кэшу промпта и оценка стоимости.", "codeRepository": "https://github.com/SHOTBOTik/claude-code-spend", "author": { "@id": "https://shotbotik.me/#me" } },
+  { "@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "win-proc-guard", "description": "Завершает дерево процессов на Windows, только если PID всё ещё принадлежит тому же процессу. Замок от двойного запуска.", "codeRepository": "https://github.com/SHOTBOTik/win-proc-guard", "author": { "@id": "https://shotbotik.me/#me" } },
+  { "@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "proc-supervisor-kit", "description": "Сторож для долгоживущих Node-процессов на Windows: пульс, перезапуск зависших, алерты без дублей, безопасный деплой с сухим прогоном.", "codeRepository": "https://github.com/SHOTBOTik/proc-supervisor-kit", "author": { "@id": "https://shotbotik.me/#me" } },
+  { "@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "polite-fetch", "description": "HTTP-клиент для API с лимитами: ограничение частоты с весами запросов, повторы с паузой и учётом Retry-After, таймауты, кэш на диске.", "codeRepository": "https://github.com/SHOTBOTik/polite-fetch", "author": { "@id": "https://shotbotik.me/#me" } },
+  { "@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "resumable-run", "description": "Долгие проходы по большим спискам: контрольные точки, продолжение после сбоя, шардирование, пагинация без дублей.", "codeRepository": "https://github.com/SHOTBOTik/resumable-run", "author": { "@id": "https://shotbotik.me/#me" } }
+]</template>
+
+<script>
+(() => {
+'use strict';
+
+/* =====================================================================
+   Помощники, флаги, уровень качества
+   ===================================================================== */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const sstep = (a, b, v) => { const t = clamp((v - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
+const rnd = Math.random;
+const gauss = () => (rnd() + rnd() + rnd() - 1.5) * 2;   // примерно нормальное, σ ≈ 1
+const focusVisible = el => { try { return el.matches(':focus-visible'); } catch (e) { return true; } };
+const root = document.documentElement;
+const qs = new URLSearchParams(location.search);
+
+// Флаг «Открытый код»: единственное место — атрибут data-oss у <html>
+if (root.dataset.oss === 'on') {
+  $('#projects').after($('#tpl-oss').content.cloneNode(true));
+  $('#nav-projects').after($('#tpl-oss-nav').content.cloneNode(true));
+  $$('template.tpl-repos').forEach(t => t.replaceWith(t.content.cloneNode(true)));
+  const ld = document.createElement('script');
+  ld.type = 'application/ld+json';
+  ld.textContent = $('#tpl-oss-ld').content.textContent;
+  document.head.appendChild(ld);
+}
+if (qs.has('og')) root.classList.add('og');
+
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches || qs.has('static');
+const COARSE = matchMedia('(pointer: coarse)').matches;
+const MOBILE = innerWidth < 768 || qs.has('lite') || (COARSE && Math.min(screen.width, screen.height) < 768);
+// Планшет: палец и экран меньше ~1100 px по короткой стороне — средний бюджет
+const TABLET = !MOBILE && COARSE && Math.min(screen.width, screen.height) < 1100;
+const WEAK = (navigator.hardwareConcurrency || 8) <= 4 || (navigator.deviceMemory || 8) <= 4;
+const FINE = matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+// Бюджет: телефон, планшет и слабое железо получают меньше частиц и без свечения
+const NMAX = MOBILE ? (WEAK ? 9000 : 16000) : TABLET ? (WEAK ? 30000 : 50000) : (WEAK ? 50000 : 110000);
+let N = NMAX;
+let BLOOM = !MOBILE && !TABLET && !WEAK;
+let LINES = true;
+const DPR_MAX = MOBILE || TABLET ? 1.5 : 2;
+let dprCap = 9;              // ступень подстройки «DPR 1» ставит 1
+const dprNow = () => Math.min(window.devicePixelRatio || 1, DPR_MAX, dprCap);
+let DPR = dprNow();
+const TRAIL = 16, SAMPLE = 1 / 30;       // след курсора: 16 точек раз в 1/30 с
+const SPRING_Z = 3.5, SPRING_W = 9.0;    // «пружина» курсора в аналитическом режиме
+const RAD = MOBILE ? 80 : 125;           // радиус влияния курсора, px
+
+const hero = $('#top'), term = $('#term');
+const stepEls = $$('#steps .step');
+const cardEls = $$('.card[data-emb]');
+const grpEls = $$('#groups .grp');
+const tlEls = $$('#tl li');
+
+/* =====================================================================
+   Интерфейс: меню, прогресс, активный пункт, магнитные кнопки, наклон карточек
+   ===================================================================== */
+const menuBtn = $('.menu-btn'), navEl = $('#nav');
+const menuOpen = () => root.classList.contains('menu-open') && menuBtn.offsetParent !== null;
+const setMenu = open => { menuBtn.setAttribute('aria-expanded', open); root.classList.toggle('menu-open', open); };
+menuBtn.addEventListener('click', () => setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'));
+navEl.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+// Открытое меню держит фокус: Tab ходит по кнопке и пунктам, Escape возвращает фокус на кнопку
+addEventListener('keydown', e => {
+  if (!menuOpen()) return;
+  const items = [menuBtn, ...$$('a', navEl)], k = items.indexOf(document.activeElement);
+  if (e.key === 'Escape') { setMenu(false); if (k >= 0) menuBtn.focus(); }
+  else if (e.key === 'Tab' && k >= 0) {
+    e.preventDefault();
+    items[(k + (e.shiftKey ? -1 : 1) + items.length) % items.length].focus();
+  }
+});
+// Клик мимо меню или фокус, ушедший из него, — закрыть
+document.addEventListener('click', e => { if (menuOpen() && !e.target.closest('.bar')) setMenu(false); });
+navEl.addEventListener('focusout', e => {
+  const to = e.relatedTarget;
+  if (menuOpen() && to && !navEl.contains(to) && to !== menuBtn) setMenu(false);
+});
+
+const navLinks = $$('#nav a');
+const navSecs = navLinks.map(a => $(a.getAttribute('href')));
+const prog = $('#prog');
+let uiPending = false;
+function syncUI() {
+  uiPending = false;
+  const max = Math.max(1, root.scrollHeight - innerHeight);
+  prog.style.transform = `scaleX(${clamp(scrollY / max, 0, 1).toFixed(4)})`;
+  root.classList.toggle('scrolled', scrollY > 40);
+  // Активный пункт: последний раздел, чей верх выше 40% экрана
+  let cur = -1;
+  navSecs.forEach((s, k) => { if (s && s.getBoundingClientRect().top < innerHeight * 0.4) cur = k; });
+  if (scrollY + innerHeight >= root.scrollHeight - 4) cur = navSecs.length - 1;
+  navLinks.forEach((a, k) => { if (k === cur) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current'); });
+}
+addEventListener('scroll', () => { if (!uiPending) { uiPending = true; requestAnimationFrame(syncUI); } }, { passive: true });
+syncUI();
+
+if (FINE && !REDUCED) {
+  // Магнитные кнопки: тянутся к курсору на несколько пикселей
+  $$('.btn').forEach(b => {
+    b.addEventListener('pointermove', e => {
+      const r = b.getBoundingClientRect();
+      b.style.setProperty('--mx', ((e.clientX - r.left - r.width / 2) * 0.25).toFixed(1) + 'px');
+      b.style.setProperty('--my', ((e.clientY - r.top - r.height / 2) * 0.35).toFixed(1) + 'px');
+    });
+    b.addEventListener('pointerleave', () => { b.style.setProperty('--mx', '0px'); b.style.setProperty('--my', '0px'); });
+  });
+  // Наклон карточки с бликом; у высоких карточек угол меньше
+  $$('.card').forEach(c => {
+    c.addEventListener('pointermove', e => {
+      const r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      const k = Math.min(1, 380 / r.height);
+      c.style.setProperty('--ry', ((x - 0.5) * 7 * k).toFixed(2) + 'deg');
+      c.style.setProperty('--rx', ((0.5 - y) * 6 * k).toFixed(2) + 'deg');
+      c.style.setProperty('--gx', (x * 100).toFixed(1) + '%');
+      c.style.setProperty('--gy', (y * 100).toFixed(1) + '%');
+    });
+    c.addEventListener('pointerleave', () => { c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg'); });
+  });
+  // Свечение у курсора: догоняет мышь с запаздыванием
+  const glow = $('.cglow');
+  let gx = innerWidth / 2, gy = innerHeight / 2, cx = gx, cy = gy, gRaf = 0;
+  const glowStep = () => {
+    cx += (gx - cx) * 0.18; cy += (gy - cy) * 0.18;
+    glow.style.transform = `translate3d(${cx.toFixed(1)}px, ${cy.toFixed(1)}px, 0)`;
+    gRaf = Math.abs(gx - cx) + Math.abs(gy - cy) > 0.5 ? requestAnimationFrame(glowStep) : 0;
+  };
+  addEventListener('pointermove', e => {
+    if (e.pointerType !== 'mouse') return;
+    gx = e.clientX; gy = e.clientY; glow.classList.add('on');
+    if (!gRaf) gRaf = requestAnimationFrame(glowStep);
+  }, { passive: true });
+  root.addEventListener('pointerleave', () => glow.classList.remove('on'));
+}
+
+/* =====================================================================
+   Терминал: сам печатает пример сессии, потом принимает команды
+   ===================================================================== */
+// Уровни «активности» групп частиц (32 штуки): 1..7 — узлы графа, 8..11 — worktree,
+// 12 — рамка терминала, 13..17 — вехи опыта, 19..25 — скопления навыков, 26 — самолётик
+const act = new Float32Array(32), actT = new Float32Array(32), clk = new Float32Array(32);
+const pulseArr = new Float32Array(16).fill(-1e5);
+const pulses = [];
+actT[12] = 0.3;
+
+function axisOf(p) { const G = geoCache && geoCache.work; return G ? (G.horiz ? p.x : p.y) : 0; }
+// Импульс бежит по ветке от a к b (координата вдоль оси графа)
+function pulse(g, a, b, dur) { pulses.push({ g, a, b, t0: performance.now() / 1000, dur }); }
+function nodePulse(n) {
+  const G = geoCache && geoCache.work; if (!G) return;
+  const from = n === 1 ? G.ext[0] : G.nodes[n - 2];
+  pulse(n, axisOf(from), axisOf(G.nodes[n - 1]), 0.5);
+}
+function lightNode(n) {
+  stepEls.forEach((el, k) => {
+    const idx = k + 1;
+    if (idx === n) { el.classList.add('on'); el.classList.remove('done'); actT[idx] = 1; }
+    else if (idx < n) { el.classList.remove('on'); el.classList.add('done'); actT[idx] = 0.4; }
+  });
+  nodePulse(n);
+  invalidate();
+}
+function allDone() {
+  stepEls.forEach(el => { el.classList.remove('on'); el.classList.add('done'); });
+  for (let k = 1; k <= 7; k++) actT[k] = 0.95;
+  actT[12] = 1;
+  setTimeout(() => { for (let k = 1; k <= 7; k++) actT[k] = 0.5; actT[12] = 0.55; for (let k = 8; k < 12; k++) actT[k] = 0.35; }, 1500);
+  invalidate();
+}
+
+const termBody = $('#termBody'), termForm = $('#termForm'), termIn = $('#termIn');
+function tline(html, cls = '', hidden = true) {
+  const d = document.createElement('div');
+  d.className = 'ln ' + cls; d.innerHTML = html;
+  if (hidden) d.setAttribute('aria-hidden', 'true');
+  termBody.appendChild(d);
+  termBody.scrollTop = termBody.scrollHeight;
+  return d;
+}
+
+async function runTerminal(fast) {
+  const wait = ms => fast ? Promise.resolve() : new Promise(r => setTimeout(r, ms));
+  const tag = (t, c) => `<span class="tg ${c}">● ${t}</span>`;
+  const pad = '<span class="tg"></span>';
+
+  const cmd = tline('<span class="pr">пульт ›</span> ');
+  const text = 'задача: новый раздел в админке';
+  if (fast) cmd.append(text);
+  else for (const ch of text) { cmd.append(ch); await wait(24 + rnd() * 30); }
+  await wait(420);
+
+  tline(tag('план', 'c1') + '4 части, волны 0–2'); lightNode(1); await wait(380);
+  tline(pad + 'волна 0: контракт, красные тесты', 'tdim'); await wait(700);
+  tline(tag('критик', 'c2') + 'замечания → план поправлен'); lightNode(2); await wait(700);
+  tline(tag('тесты', 'c3') + 'написаны до кода · <span class="bad">красные ✗</span>'); lightNode(3); await wait(700);
+  tline(tag('агенты ×4', 'c4') + 'каждый в своём git worktree'); lightNode(4); await wait(250);
+
+  // Четыре агента работают параллельно: импульсы по четырём веткам, «готово» вразнобой
+  const wts = ['contract', 'api', 'ui', 'report'];
+  const doneAt = [700, 1050, 1350, 1650];
+  const G = geoCache && geoCache.work;
+  if (G && !fast) wts.forEach((w, k) => { actT[8 + k] = 1; pulse(8 + k, axisOf(G.nodes[3]), axisOf(G.nodes[4]), doneAt[k] / 1000); });
+  const frames = '⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏';
+  const rows = wts.map((w, i) => tline(`  <span class="tdim">${i < 3 ? '├' : '└'}</span> wt/${w.padEnd(9)}<span class="sp">${fast ? '' : '⠋ пишет код'}</span>`));
+  if (!fast) {
+    let f = 0;
+    const spin = setInterval(() => {
+      f = (f + 1) % frames.length;
+      rows.forEach(r => { const s = r.querySelector('.sp'); if (s && !s.dataset.done) s.textContent = frames[f] + ' пишет код'; });
+    }, 80);
+    await Promise.all(rows.map((r, i) => wait(doneAt[i]).then(() => {
+      const s = r.querySelector('.sp'); s.dataset.done = 1; s.className = 'ok'; s.textContent = '✓ готово';
+      actT[8 + i] = 0.35; invalidate();
+    })));
+    clearInterval(spin);
+  } else rows.forEach(r => { const s = r.querySelector('.sp'); s.className = 'ok'; s.textContent = '✓ готово'; });
+  await wait(450);
+
+  // Тесты зелёные: все четыре ветки вспыхивают и сливаются
+  tline(tag('тесты', 'c3') + '<span class="ok">зелёные ✓</span>');
+  for (let k = 0; k < 4; k++) actT[8 + k] = 1;
+  if (G && !fast) for (let k = 0; k < 4; k++) pulse(8 + k, axisOf(G.nodes[3]), axisOf(G.nodes[4]), 0.45);
+  await wait(650);
+  for (let k = 0; k < 4; k++) actT[8 + k] = 0.35;
+  tline(tag('ревью', 'c5') + 'замечание → исправлено'); lightNode(5); await wait(750);
+  lightNode(6); await wait(fast ? 0 : 320);
+  tline('<span class="ok">✓ влито в main</span>'); lightNode(7); await wait(fast ? 0 : 500);
+  allDone();
+  termBody.classList.add('live');
+  termForm.classList.add('on');
+}
+
+// Ответы терминала — только тексты с сайта
+const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+const CMDS = {
+  help: ['команды: about · projects · skills · contact · clear'],
+  about: ['Сергей · Воронеж · 22 года · делаю проекты с 2022 года',
+    'С 2022 года — в команде Suppy. От FunPay до лаунчера Minecraft.',
+    'На стыке трёх областей. Код, цифры продукта и реклама — в одном проекте.',
+    'Код пишут агенты. Задача, план и приёмка — на мне.',
+    'Учился сам. По ходу проектов.'],
+  projects: () => cardEls.map(c => `· ${esc(c.querySelector('h3').textContent)} <span class="tdim">— ${esc(c.querySelector('.badge').textContent)}</span>`),
+  skills: () => grpEls.map(g => `<span class="c3">${esc(g.querySelector('h3').textContent)}:</span> ${$$('li', g).map(l => esc(l.textContent)).join(' · ')}`),
+  contact: ['Пишите в Telegram или на почту. Формат — удалённо, гибрид — в Воронеже.',
+    'Telegram: <a href="https://t.me/SHOTBOTik">t.me/SHOTBOTik</a>',
+    'Почта: <a href="mailto:hi@shotbotik.me">hi@shotbotik.me</a>',
+    'GitHub: <a href="https://github.com/SHOTBOTik">github.com/SHOTBOTik</a>'],
+};
+termForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const v = termIn.value.trim().toLowerCase();
+  termIn.value = '';
+  if (!v) return;
+  if (v === 'clear') { termBody.textContent = ''; return; }
+  const ev = esc(v);
+  tline(`<span class="pr">пульт ›</span> ${ev}`, '', false);
+  // Только свои ключи: constructor, __proto__ и прочее из прототипа — «нет такой команды»
+  let out = Object.prototype.hasOwnProperty.call(CMDS, v) ? CMDS[v] : null;
+  if (typeof out === 'function') out = out();
+  (out || [`нет такой команды: ${ev} · help`]).forEach(l => tline(l, 'out', false));
+});
+
+let termStarted = false;
+new IntersectionObserver((es, ob) => {
+  if (termStarted || !es.some(e => e.isIntersecting)) return;
+  termStarted = true; ob.disconnect();
+  runTerminal(REDUCED);
+}, { threshold: 0.35 }).observe(term);
+
+// Вехи опыта загораются, когда их пункт входит в экран
+const tlObs = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  const k = tlEls.indexOf(e.target);
+  e.target.classList.add('lit'); actT[13 + k] = 1; invalidate();
+}), { rootMargin: '0px 0px -30% 0px' });
+tlEls.forEach(li => tlObs.observe(li));
+
+/* =====================================================================
+   Геометрия страницы (всё в координатах документа, px)
+   ===================================================================== */
+function docRect(el) {
+  if (!el) return { x: 0, y: 0, w: 0, h: 0 };
+  const r = el.getBoundingClientRect();
+  return { x: r.left + scrollX, y: r.top + scrollY, w: r.width, h: r.height };
+}
+const center = r => ({ x: r.x + r.w / 2, y: r.y + r.h / 2 });
+
+// Ник подгоняется под ширину экрана, чтобы частицы и HTML совпадали
+function fitNick() {
+  const h1 = $('#nick'), span = h1.firstElementChild;
+  h1.style.fontSize = '100px';
+  const w = span.getBoundingClientRect().width;
+  const avail = Math.min(h1.clientWidth, innerWidth - 24) * (innerWidth < 768 ? 0.97 : 0.84);
+  h1.style.fontSize = clamp(100 * avail / w, 40, 240).toFixed(1) + 'px';
+}
+fitNick();
+
+// Точки внутри букв ника: рисуем тот же текст в скрытый canvas и читаем пиксели
+function sampleNick() {
+  const span = $('#nick span');
+  const rg = document.createRange(); rg.selectNodeContents(span);
+  const r = rg.getBoundingClientRect();
+  if (!r.width) return null;
+  const cs = getComputedStyle(span);
+  const fs = parseFloat(cs.fontSize);
+  const S = fs < 120 ? 2 : 1, pad = 4;
+  const cw = Math.ceil((r.width + pad * 2) * S), ch = Math.ceil((r.height + pad * 2) * S);
+  const c = document.createElement('canvas'); c.width = cw; c.height = ch;
+  const x = c.getContext('2d', { willReadFrequently: true });
+  x.scale(S, S);
+  x.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+  const ls = cs.letterSpacing === 'normal' ? 0 : parseFloat(cs.letterSpacing) || 0;
+  const hasLS = 'letterSpacing' in x;
+  if (hasLS) x.letterSpacing = ls + 'px';
+  x.textBaseline = 'alphabetic';
+  const txt = span.textContent, m = x.measureText(txt);
+  // HTML кладёт строку так: верх области = базовая линия минус ascent шрифта
+  x.fillStyle = '#fff';
+  const by = pad + (m.fontBoundingBoxAscent || m.actualBoundingBoxAscent);
+  if (hasLS || !ls) x.fillText(txt, pad, by);
+  // Без letterSpacing у canvas (старый Safari): буквы по одной, межбуквенный интервал вручную
+  else for (let k = 0; k < txt.length; k++) x.fillText(txt[k], pad + x.measureText(txt.slice(0, k)).width + k * ls, by);
+  const img = x.getImageData(0, 0, cw, ch).data;
+  const A = (px, py) => img[(py * cw + px) * 4 + 3];
+  const ox = r.left + scrollX - pad, oy = r.top + scrollY - pad, e = 2 * S;
+  const all = [], edge = [];
+  for (let py = e; py < ch - e; py++) for (let px = e; px < cw - e; px++) {
+    if (A(px, py) < 128) continue;
+    const id = all.length / 2;
+    all.push(ox + px / S, oy + py / S);
+    if (A(px - e, py) < 128 || A(px + e, py) < 128 || A(px, py - e) < 128 || A(px, py + e) < 128) edge.push(id);
+  }
+  return { all, edge, fs, S };
+}
+
+// prev — прошлая раскладка: если первый экран не сдвинулся, точки ника берутся из неё
+function measure(prev) {
+  fitNick();
+  const W = innerWidth, H = innerHeight, mob = W < 768;
+  const g = { W, H, mob };
+  g.hero = docRect(hero);
+  const same = prev && prev.W === W && ['x', 'y', 'w', 'h'].every(k => Math.abs(prev.hero[k] - g.hero[k]) < 0.5);
+  g.nick = same ? prev.nick : sampleNick();
+  // «Обо мне»: объёмная нейросеть в своём окошке
+  const ns = docRect($('#netSpot'));
+  g.about = docRect($('#about'));
+  g.net = { x: ns.x + ns.w / 2, y: ns.y + ns.h / 2, S: Math.min(ns.w, ns.h) * 0.42 };
+  // «Как я работаю»: узлы графа — это HTML-точки шагов
+  const dots = stepEls.map(el => center(docRect($('.dot', el))));
+  const horiz = Math.abs(dots[0].y - dots[1].y) < 4;
+  const box = docRect($('#steps'));
+  g.work = {
+    nodes: dots, horiz, tr: docRect(term), sec: docRect($('#work')),
+    ext: horiz ? [{ x: box.x - 40, y: dots[0].y }, { x: box.x + box.w + 40, y: dots[6].y }]
+      : [{ x: dots[0].x, y: dots[0].y - 80 }, { x: dots[6].x, y: dots[6].y + 60 }],
+    orbR: horiz ? 19 : 11, laneGap: horiz ? 15 : 8,
+  };
+  // «Опыт»: вехи и линия шкалы
+  g.marks = $$('#tl .mark').map(m => center(docRect(m)));
+  g.exp = docRect($('#experience'));
+  // «Проекты»: эмблема привязана к экрану (липкая колонка или центр телефона)
+  const er = $('#embSpot').getBoundingClientRect();
+  g.emb = er.width > 0 ? { x: er.left + er.width / 2, y: H / 2 - 20, S: Math.min(er.width, er.height) * 0.4 }
+    : { x: W / 2, y: H * 0.5, S: Math.min(W, H) * 0.36 };
+  g.embBehind = !(er.width > 0);   // эмблема за карточками — тише
+  g.proj = docRect($('#projects'));
+  // «Навыки»: галактика тоже привязана к экрану
+  const gr = $('#galSpot').getBoundingClientRect();
+  g.gal = gr.width > 0 ? { x: gr.left + gr.width / 2, y: H / 2, S: Math.min(gr.width, gr.height) * 0.5 }
+    : { x: W / 2, y: H * 0.5, S: Math.min(W, H) * 0.44 };
+  g.galBehind = !(gr.width > 0);
+  // «Связаться»: бумажный самолётик
+  const ps = docRect($('#planeSpot'));
+  g.plane = { x: ps.x + ps.w / 2, y: ps.y + ps.h / 2, S: Math.min(ps.w * 0.42, ps.h * 0.62) };
+  const ct = docRect($('#contact')), ft = docRect($('footer'));
+  g.contact = { x: ct.x, y: ct.y, w: ct.w, h: ft.y + ft.h - ct.y };
+  // Границы сцен: верх первого раздела каждой следующей сцены
+  const order = [['#about', 1], ['#work', 2], ['#experience', 3], ['#projects', 4], ['#skills', 5], ['#contact', 6]];
+  g.bounds = order.map(([s]) => docRect($(s)).y);
+  return g;
+}
+
+/* =====================================================================
+   Данные частиц. У каждой частицы 15 ячеек по 4 float в текстуре:
+   по две на каждую из 7 сцен (A и B) и одна R — случайные числа.
+   A = (x, y, z, код), код = вид + 8·группа + 256·«привязан к экрану» + 512·«сильный поток».
+   Виды: 0 точка, 1 орбита, 2 поток по отрезку, 3 пыль, 4 эмблема,
+         5 точка во вращающейся 3D-фигуре, 6 поток во вращающейся фигуре, 7 спираль шкалы.
+   Шейдер сам считает, где частица должна быть в момент времени t.
+   ===================================================================== */
+const SC = 7, STRIDE = SC * 2 + 1, TEXW = 2048;
+let RB = null;   // R не меняется при перестройке — цвета не мигают
+const getRB = () => {
+  if (!RB) { RB = new Float32Array(NMAX * 4); for (let i = 0; i < RB.length; i++) RB[i] = rnd(); }
+  return RB;
+};
+const CODE = (kind, g = 0, anch = 0, strong = 0) => kind + 8 * g + 256 * anch + 512 * strong;
+
+// Генератор: между сценами отдаёт управление, чтобы сборку можно было резать на короткие задачи
+function* buildData(geo) {
+  const NM = NMAX, rows = Math.ceil(NM * STRIDE / TEXW), RB = getRB();
+  const D = new Float32Array(TEXW * rows * 4);
+  const lines = [];   // по 5 чисел: i, j, макс. длина, сцена, яркость
+  const link = (i, j, len, s, w = 1) => lines.push(i, j, len, s, w);
+  const put = (i, j, a, b, c, d) => { const o = (i * STRIDE + j) * 4; D[o] = a; D[o + 1] = b; D[o + 2] = c; D[o + 3] = d; };
+  for (let i = 0; i < NM; i++) put(i, STRIDE - 1, RB[i * 4], RB[i * 4 + 1], RB[i * 4 + 2], RB[i * 4 + 3]);
+
+  // Своя случайная перестановка на каждую сцену: при переходе частицы летят через весь экран
+  const shuffled = () => {
+    const a = new Uint32Array(NM);
+    for (let i = 0; i < NM; i++) a[i] = i;
+    for (let i = NM - 1; i > 0; i--) { const j = (rnd() * (i + 1)) | 0; const t = a[i]; a[i] = a[j]; a[j] = t; }
+    let p = 0;
+    return n => { const s = a.subarray(p, Math.min(NM, p + Math.max(0, Math.round(n)))); p += s.length; return s; };
+  };
+  const point = (s, i, g, x, y, z, jit, e, flow = 0.12) => { put(i, s * 2, x, y, z, CODE(0, g)); put(i, s * 2 + 1, jit, e, flow, 0); };
+  const orbit = (s, i, g, x, y, r, spd, e) => {
+    put(i, s * 2, x, y, 0, CODE(1, g));
+    put(i, s * 2 + 1, r, rnd() * 6.2832, spd * (0.5 + rnd()) * (rnd() < 0.5 ? -1 : 1), e);
+  };
+  const flow = (s, i, g, a, b, v) => {
+    const L = Math.hypot(b.x - a.x, b.y - a.y) || 1;
+    put(i, s * 2, a.x, a.y, 0, CODE(2, g)); put(i, s * 2 + 1, b.x, b.y, 0, v / L);
+  };
+  // Пыль. keep — доля видимых: остальные «спят» (яркость −1) и проявляются, только когда нужны другой сцене
+  const dust = (s, i, r, z0, z1, eMul = 1, anch = 0, strong = 0, keep = 1) => {
+    const bright = rnd() < 0.06, on = rnd() < keep;
+    put(i, s * 2, r.x + rnd() * r.w, r.y + rnd() * r.h, z0 + Math.pow(rnd(), 0.7) * (z1 - z0), CODE(3, 0, anch, strong));
+    put(i, s * 2 + 1, 12 + rnd() * 48, 0.08 + rnd() * 0.25, rnd() * 6.2832, on ? (bright ? 0.9 : 0.04 + rnd() * 0.2) * eMul : -1);
+    return on;
+  };
+  const rot = (s, i, g, l, k, e, jit, wave, anch = 0) => { put(i, s * 2, l[0], l[1], l[2], CODE(5, g, anch)); put(i, s * 2 + 1, k, e, jit, wave); };
+  const rflow = (s, i, a, b, spd) => { put(i, s * 2, a[0], a[1], a[2], CODE(6)); put(i, s * 2 + 1, b[0], b[1], b[2], spd); };
+  // Раскладка частиц по набору отрезков пропорционально их длине
+  const alongSegs = (s, ids, segs) => {
+    const lens = segs.map(q => Math.hypot(q.b.x - q.a.x, q.b.y - q.a.y));
+    const tot = lens.reduce((x, y) => x + y, 0) || 1;
+    let k = 0, acc = 0;
+    ids.forEach((i, n) => {
+      const pos = (n + 0.5) / ids.length * tot;
+      while (k < segs.length - 1 && pos > acc + lens[k]) { acc += lens[k]; k++; }
+      const q = segs[k]; flow(s, i, q.g, q.a, q.b, q.v);
+    });
+  };
+  const rectSegs = (r, off, g, v) => {
+    const a = { x: r.x - off, y: r.y - off }, b = { x: r.x + r.w + off, y: r.y - off },
+      c = { x: r.x + r.w + off, y: r.y + r.h + off }, d = { x: r.x - off, y: r.y + r.h + off };
+    return [{ a, b, g, v }, { a: b, b: c, g, v }, { a: c, b: d, g, v }, { a: d, b: a, g, v }];
+  };
+  const { W, H, mob } = geo;
+  const wide = r => ({ x: -W * 0.05, y: r.y, w: W * 1.1, h: r.h });
+  const screen = { x: -W * 0.06, y: -H * 0.06, w: W * 1.12, h: H * 1.12 };
+
+  /* ---------- 0. Первый экран: ник из частиц + пыль в глубине ---------- */
+  {
+    const s = 0, take = shuffled(), smp = geo.nick;
+    const T = smp && smp.all.length ? Math.round(NM * 0.52) : 0;
+    const tid = take(T), tx = new Float32Array(T), ty = new Float32Array(T);
+    const nAll = smp ? smp.all.length / 2 : 0;
+    const eK = clamp(34000 / Math.max(T, 1), 0.5, 1);   // плотнее ник — тусклее каждая точка
+    for (let k = 0; k < T; k++) {
+      const onEdge = smp.edge.length && rnd() < 0.36;
+      const id = onEdge ? smp.edge[(rnd() * smp.edge.length) | 0] : (rnd() * nAll) | 0;
+      const x = smp.all[id * 2] + (rnd() - 0.5) / smp.S, y = smp.all[id * 2 + 1] + (rnd() - 0.5) / smp.S;
+      tx[k] = x; ty[k] = y;
+      point(s, tid[k], 0, x, y, (rnd() - 0.5) * 10, 0.3 + rnd() * 0.5, (onEdge ? 0.6 : 0.17 + rnd() * 0.12) * eK, onEdge ? 0.35 : 0.6 + rnd() * 0.5);
+    }
+    const hr = geo.hero;
+    const amb = take(NM);
+    const awake = [];
+    amb.forEach(i => { if (dust(s, i, { x: -W * 0.05, y: hr.y - H * 0.1, w: W * 1.1, h: hr.h * 1.15 }, -900, 260, 1, 0, 1, 0.42)) awake.push(i); });
+    yield;
+    // Связи-«нейроны» между близкими частицами букв: сетка-хэш вместо перебора всех пар
+    if (T) {
+      const cell = clamp(smp.fs * 0.12, 7, 26), grid = new Map(), K = 100000;
+      for (let k = 0; k < T; k++) {
+        const key = Math.floor(tx[k] / cell) + Math.floor(ty[k] / cell) * K;
+        let a = grid.get(key); if (!a) grid.set(key, a = []); a.push(k);
+      }
+      const L = Math.round(Math.min(T, 40000) * (mob ? 0.1 : 0.12));
+      for (let n = 0; n < L; n++) {
+        const k = (rnd() * T) | 0, gx = Math.floor(tx[k] / cell), gy = Math.floor(ty[k] / cell);
+        for (let tries = 0; tries < 6; tries++) {
+          const a = grid.get(gx + ((rnd() * 3) | 0) - 1 + (gy + ((rnd() * 3) | 0) - 1) * K);
+          if (!a) continue;
+          const m = a[(rnd() * a.length) | 0];
+          const d = Math.hypot(tx[m] - tx[k], ty[m] - ty[k]);
+          if (m === k || d < cell * 0.3 || d > cell * 1.3) continue;
+          link(tid[k], tid[m], Math.max(d * 2.4, 12), s);
+          break;
+        }
+      }
+    }
+    // Сплетение в пыли: пары, близкие в 3D
+    const sub = awake.slice(0, mob ? 260 : 800);
+    const P = i => { const o = i * STRIDE * 4; return [D[o], D[o + 1], D[o + 2]]; };
+    const pos = Array.from(sub, P), deg = new Uint8Array(sub.length);
+    for (let a = 0; a < sub.length; a++) for (let b = a + 1; b < sub.length; b++) {
+      if (deg[a] > 1 || deg[b] > 1) continue;
+      const d = Math.hypot(pos[a][0] - pos[b][0], pos[a][1] - pos[b][1], pos[a][2] - pos[b][2]);
+      if (d < (mob ? 100 : 125)) { link(sub[a], sub[b], mob ? 110 : 135, s, 0.35); deg[a]++; deg[b]++; }
+    }
+  }
+
+  yield;
+  /* ---------- 1. «Обо мне»: объёмная нейросеть, по связям бегут сигналы ---------- */
+  {
+    const s = 1, take = shuffled(), C = geo.net, S = C.S;
+    const layers = mob ? [3, 5, 6, 5, 3] : [4, 6, 7, 6, 3];
+    const nodes = [];
+    layers.forEach((n, l) => {
+      const r = S * (0.18 + 0.5 * n / 7), x = (l / (layers.length - 1) * 2 - 1) * S;
+      for (let k = 0; k < n; k++) {
+        const a = k / n * Math.PI * 2 + l * 0.45;
+        nodes.push({ l, p: [x, Math.cos(a) * r * 0.95, Math.sin(a) * r] });
+      }
+    });
+    const perNode = NM * 0.15 / nodes.length;
+    const cores = nodes.map(nd => {
+      const ids = take(perNode);
+      ids.forEach((i, m) => {
+        if (m === 0) { rot(s, i, 0, nd.p, 1, 2.2, 0, 1.6); return; }
+        const r = S * 0.05 * Math.pow(rnd(), 0.6);
+        rot(s, i, 0, [nd.p[0] + gauss() * r, nd.p[1] + gauss() * r, nd.p[2] + gauss() * r], 1, 0.45, 1.5, 1.4);
+      });
+      return ids[0];
+    });
+    const edges = [];
+    nodes.forEach((a, i) => nodes.forEach((b, j) => { if (b.l === a.l + 1) edges.push([i, j]); }));
+    const ids = take(NM * 0.3);
+    ids.forEach((i, n) => {
+      const [a, b] = edges[n % edges.length];
+      rflow(s, i, nodes[a].p, nodes[b].p, 0.1 + rnd() * 0.18);
+    });
+    edges.forEach(([a, b]) => link(cores[a], cores[b], S * 4, s, 0.55));
+    take(NM).forEach(i => dust(s, i, wide(geo.about), -900, 200, 0.8, 0, 0, 0.26));
+  }
+
+  yield;
+  /* ---------- 2. «Как я работаю»: git-граф — main и четыре worktree ---------- */
+  {
+    const s = 2, take = shuffled(), G = geo.work, R0 = G.orbR, nd = G.nodes;
+    // Узлы: сферы из частиц на орбитах + яркое ядро; у «Команды агентов» — четыре сферы
+    nd.forEach((n, k) => {
+      const g = k + 1, ids = take(NM * 0.16 * (k === 3 ? 1.6 : 1) / 7.6);
+      const subs = k === 3
+        ? [[-1, -1], [1, -1], [1, 1], [-1, 1]].map(([dx, dy]) => ({ x: n.x + dx * R0 * 0.62, y: n.y + dy * R0 * 0.62, r: R0 * 0.55 }))
+        : [{ x: n.x, y: n.y, r: R0 }];
+      const nCore = Math.round(ids.length * 0.05);
+      ids.forEach((i, m) => {
+        if (m < nCore) { point(s, i, g, n.x + (rnd() - 0.5) * 4, n.y + (rnd() - 0.5) * 4, 0, 1.5, 1.1); return; }
+        const o = subs[m % subs.length];
+        orbit(s, i, g, o.x, o.y, o.r * (0.45 + 0.55 * Math.sqrt(rnd())), 1.0, 0.35);
+      });
+    });
+    // Ветка main: от края через все узлы к другому краю
+    const pts = [G.ext[0], ...nd, G.ext[1]];
+    const main = [];
+    for (let k = 0; k < pts.length - 1; k++) main.push({ a: pts[k], b: pts[k + 1], g: k < 7 ? k + 1 : 0, v: mob ? 50 : 70 });
+    alongSegs(s, take(NM * 0.13), main);
+    // Четыре worktree: отходят от узла «агенты» и вливаются в «ревью»
+    const a = nd[3], b = nd[4], lanes = [];
+    for (let k = 0; k < 4; k++) {
+      const off = (k + 1) * G.laneGap, g = 8 + k;
+      const p1 = G.horiz ? { x: a.x + 30 + k * 4, y: a.y - off } : { x: a.x + off, y: a.y + 26 + k * 3 };
+      const p2 = G.horiz ? { x: b.x - 30 - k * 4, y: b.y - off } : { x: b.x + off, y: b.y - 26 - k * 3 };
+      lanes.push({ a, b: p1, g, v: 46 }, { a: p1, b: p2, g, v: 46 }, { a: p2, b, g, v: 46 });
+    }
+    alongSegs(s, take(NM * 0.11), lanes);
+    // Светящаяся рамка терминала
+    alongSegs(s, take(NM * 0.08), rectSegs(G.tr, 3, 12, 34));
+    take(NM).forEach(i => dust(s, i, wide(G.sec), -900, 200, 0.8, 0, 0, 0.26));
+  }
+
+  yield;
+  /* ---------- 3. «Опыт»: двойная спираль вдоль шкалы, вехи-сферы ---------- */
+  {
+    const s = 3, take = shuffled(), M = geo.marks;
+    if (M.length) {
+      const x = M[0].x, y0 = M[0].y - 40, y1 = M[M.length - 1].y + 90, rad = mob ? 11 : 24;
+      take(NM * 0.3).forEach(i => {
+        const u = rnd(), t = rnd();
+        const ph = t < 0.42 ? 0 : t < 0.84 ? Math.PI : 0, r = t < 0.84 ? rad * (0.85 + rnd() * 0.3) : 0;
+        put(i, s * 2, u, ph + (rnd() - 0.5) * 0.3, r, CODE(7, 18));
+        put(i, s * 2 + 1, x, y0, y1, t < 0.84 ? 0.38 : 0.55);
+      });
+      M.forEach((m, k) => {
+        const ids = take(NM * 0.022), nCore = Math.round(ids.length * 0.06);
+        ids.forEach((i, n) => {
+          if (n < nCore) point(s, i, 13 + k, m.x + (rnd() - 0.5) * 4, m.y + (rnd() - 0.5) * 4, 0, 1.2, 1.0);
+          else orbit(s, i, 13 + k, m.x, m.y, (mob ? 12 : 22) * (0.5 + 0.5 * Math.sqrt(rnd())), 1.1, 0.3);
+        });
+      });
+    }
+    take(NM).forEach(i => dust(s, i, wide(geo.exp), -900, 200, 0.8, 0, 0, 0.26));
+  }
+
+  yield;
+  /* ---------- 4. «Проекты»: облако собирается в эмблему активной карточки ---------- */
+  {
+    const s = 4, take = shuffled();
+    take(EMB_N).forEach((i, n) => { put(i, s * 2, 0, 0, 0, CODE(4, 0, 1)); put(i, s * 2 + 1, n, 1, 0, 0); });
+    take(NM).forEach(i => dust(s, i, screen, -900, 150, 0.6, 1, 0, 0.16));
+  }
+
+  yield;
+  /* ---------- 5. «Навыки»: вращающаяся галактика, группы — скопления ---------- */
+  {
+    const s = 5, take = shuffled(), S = geo.gal.S;
+    const spinK = r => 0.9 / (0.3 + r);   // внутренние части крутятся быстрее
+    // Ядро
+    take(NM * 0.1).forEach(i => {
+      const r = Math.abs(gauss()) * 0.11;
+      const a = rnd() * 6.2832;
+      rot(s, i, 0, [Math.cos(a) * r * S, gauss() * 0.035 * S, Math.sin(a) * r * S], spinK(r), 0.55, 1.5, 0, 1);
+    });
+    // Два рукава — логарифмические спирали
+    const armAt = (arm, r) => arm * Math.PI + Math.log(r / 0.12) * 1.9;
+    take(NM * 0.3).forEach(i => {
+      const arm = rnd() < 0.5 ? 0 : 1, r = 0.12 + Math.pow(rnd(), 0.8) * 0.88;
+      const a = armAt(arm, r) + gauss() * (0.1 + 0.12 * r);
+      rot(s, i, 0, [Math.cos(a) * r * S, gauss() * 0.025 * S, Math.sin(a) * r * S], spinK(r), 0.22 + rnd() * 0.18, 2, 0, 1);
+    });
+    // Семь скоплений — группы навыков
+    for (let k = 0; k < 7; k++) {
+      const arm = k % 2, r = 0.3 + k * 0.085, a = armAt(arm, r) + 0.15;
+      const c = [Math.cos(a) * r * S, 0, Math.sin(a) * r * S], ids = take(NM * 0.03), K = spinK(r);
+      const stars = [];
+      ids.forEach((i, n) => {
+        const rr = S * 0.065 * Math.pow(rnd(), 0.7);
+        if (n < 7) { const p = [c[0] + gauss() * S * 0.05, gauss() * S * 0.03, c[2] + gauss() * S * 0.05]; rot(s, i, 19 + k, p, K, 1.6, 0.5, 0, 1); stars.push(i); return; }
+        rot(s, i, 19 + k, [c[0] + gauss() * rr, gauss() * rr * 0.6, c[2] + gauss() * rr], K, 0.4, 1.2, 0, 1);
+      });
+      for (let n = 0; n < stars.length - 1; n++) link(stars[n], stars[n + 1], S * 0.5, s, 0.9);
+      link(stars[0], stars[stars.length - 1], S * 0.5, s, 0.9);
+    }
+    take(NM).forEach(i => dust(s, i, screen, -900, 150, 0.6, 1, 0, 0.16));
+  }
+
+  yield;
+  /* ---------- 6. «Связаться»: бумажный самолётик ---------- */
+  {
+    const s = 6, take = shuffled(), C = geo.plane, S = C.S;
+    // Вершины самолётика (x — нос, y — вниз, z — к зрителю), повёрнутые носом вправо-вверх
+    const roll = -0.42, cr = Math.cos(roll), sr = Math.sin(roll);
+    const v = ([x, y, z]) => [(x * cr - y * sr) * S, (x * sr + y * cr) * S, z * S];
+    const Nn = v([1.05, -0.12, 0]), WL = v([-0.85, -0.02, -0.78]), WR = v([-0.85, -0.02, 0.78]),
+      Tc = v([-0.6, 0.02, 0]), K = v([-0.6, 0.4, 0]);
+    const lerp = (a, b, t) => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
+    const tri = (a, b, c) => { let p = rnd(), q = rnd(); if (p + q > 1) { p = 1 - p; q = 1 - q; } return [a[0] + (b[0] - a[0]) * p + (c[0] - a[0]) * q, a[1] + (b[1] - a[1]) * p + (c[1] - a[1]) * q, a[2] + (b[2] - a[2]) * p + (c[2] - a[2]) * q]; };
+    const edgesP = [[Nn, WL], [Nn, WR], [WL, Tc], [WR, Tc], [Nn, Tc], [Nn, K], [Tc, K]];
+    take(NM * 0.34).forEach(i => {
+      const t = rnd();
+      if (t < 0.48) { const [a, b] = edgesP[(rnd() * edgesP.length) | 0]; rot(s, i, 26, lerp(a, b, rnd()), 1, 0.85, 1, 0); }
+      else if (t < 0.92) rot(s, i, 26, tri(...(rnd() < 0.5 ? [Nn, WL, Tc] : [Nn, WR, Tc])), 1, 0.22, 1.5, 0);
+      else rot(s, i, 26, tri(Nn, Tc, K), 1, 0.3, 1.5, 0);
+    });
+    // Пунктир траектории: из левого нижнего угла к хвосту
+    const tail = { x: C.x + (Tc[0] - S * 0.2), y: C.y + Tc[1] + S * 0.25 };
+    const st = { x: C.x - Math.min(W * 0.45, S * 3.4), y: C.y + S * 1.3 };
+    const path = [];
+    for (let k = 0; k < 8; k++) {
+      const t0 = k / 8, t1 = (k + 1) / 8;
+      const P = t => ({ x: st.x + (tail.x - st.x) * t, y: st.y + (tail.y - st.y) * t - Math.sin(Math.PI * t) * S * 0.7 });
+      path.push({ a: P(t0), b: P(t1 - 0.04), g: 26, v: 80 });
+    }
+    alongSegs(s, take(NM * 0.06), path);
+    take(NM).forEach(i => dust(s, i, wide(geo.contact), -900, 200, 0.85, 0, 0, 0.3));
+  }
+  return { D, rows, lines };
+}
+
+/* =====================================================================
+   Эмблемы проектов: облака точек в локальных координатах (−1..1)
+   ===================================================================== */
+const EMB_KEYS = ['block', 'windows', 'candles', 'funnel', 'crate', 'chat', 'rack', 'ya', 'code']
+  .concat(root.dataset.oss === 'on' ? ['shield', 'bars', 'tree', 'pulse', 'gauge', 'steps'] : []);   // эмблемы OSS — только при флаге
+const EMB_N = Math.round(NMAX * 0.5), EMB_W = 1024, EMB_ROWS = Math.ceil(EMB_N / EMB_W);
+
+function* buildEmblems() {
+  const turn = (yaw, pitch) => {   // заранее повернуть фигуру, чтобы был виден объём
+    const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+    return p => { const x1 = cy * p[0] + sy * p[2], z1 = -sy * p[0] + cy * p[2]; return [x1, cp * p[1] - sp * z1, sp * p[1] + cp * z1, p[3]]; };
+  };
+  const J = 0.012;
+  const seg = (a, b, e) => () => { const t = rnd(); return [a[0] + (b[0] - a[0]) * t + (rnd() - 0.5) * J, a[1] + (b[1] - a[1]) * t + (rnd() - 0.5) * J, a[2] + (b[2] - a[2]) * t + (rnd() - 0.5) * J, e]; };
+  const quad = (o, u, v, e) => () => { const s = rnd(), t = rnd(); return [o[0] + u[0] * s + v[0] * t, o[1] + u[1] * s + v[1] * t, o[2] + u[2] * s + v[2] * t, e]; };
+  const ball = (c, r, e) => () => [c[0] + gauss() * r, c[1] + gauss() * r, c[2] + gauss() * r, e];
+  const mix = parts => {
+    const tot = parts.reduce((x, p) => x + p[0], 0);
+    return () => { let r = rnd() * tot; for (const [w, f] of parts) if ((r -= w) <= 0) return f(); return parts[0][1](); };
+  };
+  const box = (c, h) => {
+    const V = [];
+    for (const sx of [-1, 1]) for (const sy of [-1, 1]) for (const sz of [-1, 1]) V.push([c[0] + sx * h[0], c[1] + sy * h[1], c[2] + sz * h[2]]);
+    const E = [];   // рёбра — пары вершин, отличающиеся одной координатой
+    for (let a = 0; a < 8; a++) for (let b = a + 1; b < 8; b++) { const d = a ^ b; if (d === 1 || d === 2 || d === 4) E.push([V[a], V[b]]); }
+    const F = [];
+    for (let k = 0; k < 3; k++) for (const sg of [-1, 1]) {
+      const a = (k + 1) % 3, b = (k + 2) % 3, O = c.slice(), u = [0, 0, 0], v = [0, 0, 0];
+      O[k] += sg * h[k]; O[a] -= h[a]; O[b] -= h[b]; u[a] = 2 * h[a]; v[b] = 2 * h[b];
+      F.push({ O, u, v });
+    }
+    return { E, F };
+  };
+  const add = (a, b, t = 1) => [a[0] + b[0] * t, a[1] + b[1] * t, a[2] + b[2] * t];
+  // Плоская фигура с canvas: заливка + усиленный контур
+  const raster = (draw, edgeShare, eFill, eEdge) => {
+    const S = 220, c = document.createElement('canvas'); c.width = c.height = S;
+    const x = c.getContext('2d', { willReadFrequently: true });
+    x.fillStyle = x.strokeStyle = '#fff'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.lineCap = x.lineJoin = 'round';
+    draw(x, S);
+    const a = x.getImageData(0, 0, S, S).data, fill = [], edge = [];
+    const A = (px, py) => a[(py * S + px) * 4 + 3];
+    for (let py = 2; py < S - 2; py++) for (let px = 2; px < S - 2; px++) {
+      if (A(px, py) < 128) continue;
+      fill.push(px, py);
+      if (A(px - 2, py) < 128 || A(px + 2, py) < 128 || A(px, py - 2) < 128 || A(px, py + 2) < 128) edge.push(px, py);
+    }
+    if (!fill.length) return ball([0, 0, 0], 0.4, 0.5);
+    return () => {
+      const ue = edge.length && rnd() < edgeShare, arr = ue ? edge : fill, k = ((rnd() * arr.length / 2) | 0) * 2;
+      return [(arr[k] + rnd()) / S * 2 - 1, (arr[k + 1] + rnd()) / S * 2 - 1, (rnd() - 0.5) * (ue ? 0.08 : 0.16), ue ? eEdge : eFill];
+    };
+  };
+  const font = getComputedStyle(document.body).fontFamily;
+  const mono = getComputedStyle($('.sec-num')).fontFamily;
+
+  const SHAPES = {
+    // JustLauncher: блок с сеткой «пикселей» на гранях
+    block: () => {
+      const { E, F } = box([0, 0, 0], [0.6, 0.6, 0.6]), P = [];
+      E.forEach(([a, b]) => P.push([1, seg(a, b, 1.1)]));
+      F.forEach(({ O, u, v }) => {
+        for (const t of [0.25, 0.5, 0.75]) {
+          P.push([0.4, seg(add(O, u, t), add(add(O, u, t), v), 0.5)], [0.4, seg(add(O, v, t), add(add(O, v, t), u), 0.5)]);
+        }
+        P.push([1.1, quad(O, u, v, 0.14)]);
+      });
+      return [mix(P), turn(0.7, -0.5)];
+    },
+    // Пульт: сетка окон с заголовками
+    windows: () => {
+      const P = [], w = 0.42, h = 0.3;
+      [[-0.46, -0.36, 0.18], [0.44, -0.4, -0.14], [-0.4, 0.38, -0.2], [0.5, 0.32, 0.12]].forEach(([x, y, z]) => {
+        const tl = [x - w, y - h, z], tr = [x + w, y - h, z], br = [x + w, y + h, z], bl = [x - w, y + h, z];
+        [[tl, tr], [tr, br], [br, bl], [bl, tl]].forEach(([a, b]) => P.push([1, seg(a, b, 1)]));
+        P.push([0.8, seg([x - w, y - h + 0.13, z], [x + w, y - h + 0.13, z], 0.7)]);
+        for (let k = 0; k < 3; k++) P.push([0.14, ball([x - w + 0.08 + k * 0.08, y - h + 0.065, z], 0.012, 1.5)]);
+        for (let k = 0; k < 3; k++) P.push([0.32, seg([x - w + 0.1, y - h + 0.27 + k * 0.1, z], [x - w + 0.1 + (0.62 - k * 0.14) * w * 1.6, y - h + 0.27 + k * 0.1, z], 0.4)]);
+        P.push([1.1, quad(tl, [2 * w, 0, 0], [0, 2 * h, 0], 0.09)]);
+      });
+      return [mix(P), turn(0.34, -0.16)];
+    },
+    // Сервис сделок: свечи графика
+    candles: () => {
+      const P = [];
+      const C = [[0.3, 0.55, 0.22, 0.62, 1], [0.1, 0.38, 0.02, 0.45, 1], [0.12, 0.28, 0.05, 0.36, 0], [-0.05, 0.3, -0.14, 0.36, 1],
+        [-0.02, 0.12, -0.1, 0.2, 0], [-0.28, 0.1, -0.36, 0.16, 1], [-0.48, -0.25, -0.58, -0.18, 1], [-0.7, -0.45, -0.82, -0.4, 1]];
+      C.forEach(([top, bot, hi, lo, up], k) => {
+        const x = -0.84 + k * 0.24, w = 0.075, e = up ? 1 : 0.6;
+        [[[x - w, top, 0], [x + w, top, 0]], [[x + w, top, 0], [x + w, bot, 0]], [[x + w, bot, 0], [x - w, bot, 0]], [[x - w, bot, 0], [x - w, top, 0]]]
+          .forEach(([a, b]) => P.push([0.5, seg(a, b, e)]));
+        P.push([0.5, seg([x, hi, 0], [x, top, 0], 0.7)], [0.5, seg([x, bot, 0], [x, lo, 0], 0.7)]);
+        P.push([up ? 1.2 : 0.4, quad([x - w, top, -0.04], [2 * w, 0, 0], [0, bot - top, 0.08], up ? 0.45 : 0.15)]);
+      });
+      P.push([1.2, seg([-0.98, 0.8, 0], [0.98, 0.8, 0], 0.25)]);
+      return [mix(P), turn(0.25, 0)];
+    },
+    // Анализ данных: воронка из точек
+    funnel: () => {
+      const P = [];
+      for (let k = 0; k < 7; k++) {
+        const y = -0.62 + k * 0.19, r = 0.95 - k * 0.125, n = Math.round(6 + r * 26);
+        for (let j = 0; j < n; j++) { const a = j / n * 6.2832 + k * 0.3; P.push([1, ball([Math.cos(a) * r, y, Math.sin(a) * r], 0.016, 0.8 + (k === 6 ? 0.5 : 0))]); }
+      }
+      for (let k = 0; k < 5; k++) P.push([2.2, ball([0, 0.68 + k * 0.08, 0], 0.018, 1.3)]);
+      return [mix(P), turn(0, -0.45)];
+    },
+    // CS2: ящик с досками и диагоналями
+    crate: () => {
+      const h = [0.86, 0.52, 0.52], { E } = box([0, 0, 0], h), P = [];
+      E.forEach(([a, b]) => P.push([1.6, seg(a, b, 1.1)]));
+      for (const sz of [-1, 1]) {
+        const z = sz * h[2];
+        P.push([1.2, seg([-h[0], -h[1], z], [h[0], h[1], z], 0.75)], [1.2, seg([-h[0], h[1], z], [h[0], -h[1], z], 0.75)]);
+        for (const y of [-0.17, 0.17]) P.push([1.1, seg([-h[0], y, z], [h[0], y, z], 0.5)]);
+        P.push([1.4, quad([-h[0], -h[1], z], [2 * h[0], 0, 0], [0, 2 * h[1], 0], 0.13)]);
+      }
+      for (const sx of [-1, 1]) { const x = sx * h[0]; P.push([0.8, seg([x, -h[1], -h[2]], [x, h[1], h[2]], 0.7)], [0.8, seg([x, h[1], -h[2]], [x, -h[1], h[2]], 0.7)]); }
+      P.push([0.8, quad([-h[0], -h[1], -h[2]], [2 * h[0], 0, 0], [0, 0, 2 * h[2]], 0.13)]);
+      return [mix(P), turn(-0.62, -0.4)];
+    },
+    // FunPay: облачко чата с тремя точками
+    chat: () => [raster((x, S) => {
+      const k = S / 2, r = 0.22 * k, X0 = 0.14 * S, X1 = 0.86 * S, Y0 = 0.2 * S, Y1 = 0.68 * S;
+      x.lineWidth = S * 0.05;
+      x.beginPath();
+      x.moveTo(X0 + r, Y0); x.arcTo(X1, Y0, X1, Y1, r); x.arcTo(X1, Y1, X0, Y1, r);
+      x.lineTo(0.42 * S, Y1); x.lineTo(0.25 * S, 0.86 * S); x.lineTo(0.3 * S, Y1);
+      x.arcTo(X0, Y1, X0, Y0, r); x.arcTo(X0, Y0, X1, Y0, r); x.closePath(); x.stroke();
+      for (let j = 0; j < 3; j++) { x.beginPath(); x.arc(0.34 * S + j * 0.16 * S, 0.44 * S, S * 0.045, 0, 6.2832); x.fill(); }
+    }, 0.55, 0.5, 1), turn(0, 0)],
+    // ВКонтакте и сервер Minecraft: серверная стойка
+    rack: () => {
+      const P = [];
+      for (const yc of [-0.46, 0, 0.46]) {
+        const h = [0.8, 0.17, 0.5], { E } = box([0, yc, 0], h), z = h[2];
+        E.forEach(([a, b]) => P.push([1, seg(a, b, 1)]));
+        P.push([1.2, quad([-0.8, yc - 0.17, z], [1.6, 0, 0], [0, 0.34, 0], 0.13)]);
+        for (const lx of [0.5, 0.63]) P.push([0.5, ball([lx, yc, z], 0.022, 1.7)]);
+        for (const ly of [-0.06, 0.06]) P.push([0.5, seg([-0.65, yc + ly, z], [0.25, yc + ly, z], 0.45)]);
+      }
+      return [mix(P), turn(-0.5, -0.3)];
+    },
+    // Локализация: буква «Я»
+    ya: () => [raster((x, S) => { x.font = `900 ${S * 0.86}px ${font}`; x.fillText('Я', S / 2, S * 0.54); }, 0.42, 0.28, 1), turn(0, 0)],
+    // Этот сайт: </>
+    code: () => [raster((x, S) => { x.font = `700 ${S * 0.5}px ${mono}`; x.fillText('</>', S / 2, S * 0.52); }, 0.42, 0.3, 1), turn(0, 0)],
+    // claude-code-spend: столбики расхода, у каждого отмечена доля кэша
+    bars: () => {
+      const P = [];
+      [0.55, 0.9, 0.7, 1.25, 1.0].forEach((hgt, k) => {
+        const x = -0.8 + k * 0.4, y0 = 0.65, h = [0.13, hgt / 2, 0.16], { E, F } = box([x, y0 - hgt / 2, 0], h);
+        E.forEach(([a, b]) => P.push([0.8, seg(a, b, 1)]));
+        F.forEach(({ O, u, v }) => P.push([0.35, quad(O, u, v, 0.14)]));
+        P.push([0.5, seg([x - 0.13, y0 - hgt * 0.4, 0.16], [x + 0.13, y0 - hgt * 0.4, 0.16], 1.2)]);
+      });
+      P.push([1, seg([-1.05, 0.66, 0.2], [1.05, 0.66, 0.2], 0.4)]);
+      return [mix(P), turn(0.45, -0.25)];
+    },
+    // win-proc-guard: дерево процессов
+    tree: () => {
+      const N = [[0, -0.72, 0], [-0.52, -0.05, 0.15], [0.52, -0.05, -0.15], [-0.82, 0.64, 0.1], [-0.27, 0.64, 0.25], [0.27, 0.64, -0.25], [0.82, 0.64, -0.05]];
+      const E = [[0, 1], [0, 2], [1, 3], [1, 4], [2, 5], [2, 6]], P = [];
+      E.forEach(([a, b]) => P.push([1, seg(N[a], N[b], 0.6)]));
+      N.forEach((c, k) => { P.push([k ? 0.5 : 0.9, ball(c, 0.05, 1.3)]); P.push([0.35, ball(c, 0.12, 0.25)]); });
+      return [mix(P), turn(0.35, -0.15)];
+    },
+    // proc-supervisor-kit: пульс в круге
+    pulse: () => [raster((x, S) => {
+      x.lineWidth = S * 0.04;
+      x.beginPath(); x.arc(S / 2, S / 2, S * 0.4, 0, 6.2832); x.stroke();
+      x.lineWidth = S * 0.05; x.beginPath();
+      [[0.16, 0.52], [0.36, 0.52], [0.43, 0.36], [0.5, 0.72], [0.58, 0.26], [0.65, 0.52], [0.84, 0.52]]
+        .forEach(([u, v], k) => { if (k) x.lineTo(u * S, v * S); else x.moveTo(u * S, v * S); });
+      x.stroke();
+    }, 0.55, 0.3, 1), turn(0, 0)],
+    // polite-fetch: шкала-ограничитель со стрелкой
+    gauge: () => [raster((x, S) => {
+      const cx = S / 2, cy = S * 0.62, r = S * 0.38;
+      x.lineWidth = S * 0.045; x.beginPath(); x.arc(cx, cy, r, Math.PI, 2 * Math.PI); x.stroke();
+      x.lineWidth = S * 0.025;
+      for (let k = 0; k <= 6; k++) {
+        const a = Math.PI + k / 6 * Math.PI;
+        x.beginPath(); x.moveTo(cx + Math.cos(a) * r * 0.78, cy + Math.sin(a) * r * 0.78); x.lineTo(cx + Math.cos(a) * r * 0.92, cy + Math.sin(a) * r * 0.92); x.stroke();
+      }
+      const a = Math.PI * 1.32; x.lineWidth = S * 0.04;
+      x.beginPath(); x.moveTo(cx, cy); x.lineTo(cx + Math.cos(a) * r * 0.72, cy + Math.sin(a) * r * 0.72); x.stroke();
+      x.beginPath(); x.arc(cx, cy, S * 0.05, 0, 6.2832); x.fill();
+    }, 0.5, 0.3, 1), turn(0, 0)],
+    // resumable-run: путь с контрольными точками, пройденные закрашены, флажок — место продолжения
+    steps: () => [raster((x, S) => {
+      const y = S * 0.55, xs = [0.12, 0.31, 0.5, 0.69, 0.88].map(u => u * S);
+      x.lineWidth = S * 0.03; x.beginPath(); x.moveTo(xs[0], y); x.lineTo(xs[2], y); x.stroke();
+      x.setLineDash([S * 0.03, S * 0.03]); x.beginPath(); x.moveTo(xs[2], y); x.lineTo(xs[4], y); x.stroke(); x.setLineDash([]);
+      xs.forEach((cx, k) => { x.beginPath(); x.arc(cx, y, S * 0.055, 0, 6.2832); if (k <= 2) x.fill(); else x.stroke(); });
+      x.beginPath(); x.moveTo(xs[2], y - S * 0.06); x.lineTo(xs[2], y - S * 0.3); x.stroke();
+      x.beginPath(); x.moveTo(xs[2], y - S * 0.3); x.lineTo(xs[2] + S * 0.15, y - S * 0.25); x.lineTo(xs[2], y - S * 0.2); x.closePath(); x.fill();
+    }, 0.5, 0.3, 1), turn(0, 0)],
+    // leak-guard: щит с галочкой
+    shield: () => [raster((x, S) => {
+      x.lineWidth = S * 0.05;
+      x.beginPath(); x.moveTo(S * 0.5, S * 0.1); x.lineTo(S * 0.82, S * 0.22); x.lineTo(S * 0.8, S * 0.52);
+      x.quadraticCurveTo(S * 0.76, S * 0.78, S * 0.5, S * 0.9); x.quadraticCurveTo(S * 0.24, S * 0.78, S * 0.2, S * 0.52);
+      x.lineTo(S * 0.18, S * 0.22); x.closePath(); x.stroke();
+      x.lineWidth = S * 0.07; x.beginPath(); x.moveTo(S * 0.36, S * 0.5); x.lineTo(S * 0.47, S * 0.62); x.lineTo(S * 0.66, S * 0.38); x.stroke();
+    }, 0.6, 0.35, 1), turn(0, 0)],
+  };
+  // По одной эмблеме за шаг: [номер, точки]
+  for (let e = 0; e < EMB_KEYS.length; e++) {
+    const [gen, xf] = SHAPES[EMB_KEYS[e]]();
+    const E = new Float32Array(EMB_W * EMB_ROWS * 4);
+    for (let j = 0; j < EMB_N; j++) E.set(xf(gen()), j * 4);
+    yield [e, E];
+  }
+}
+
+/* =====================================================================
+   Шейдеры. COMMON — общая часть симуляции и рендера: «где частица
+   должна быть» (цель) в каждой сцене. Симуляция тянет частицы к цели.
+   ===================================================================== */
+const COMMON = `
+precision highp float;
+precision highp int;
+#define SC ${SC}
+#define STRIDE ${STRIDE}
+uniform highp sampler2D uData;   // данные сцен (RGBA32F)
+uniform highp sampler2D uEmb;    // эмблемы проектов
+uniform int uTexW, uEmbW, uEmbRows;
+uniform float uTime, uScroll, uAxis;
+uniform vec4 uAct[8], uClk[8], uPulse[4];   // по 32 / 32 / 16 чисел, упакованы в vec4
+uniform vec4 uScA[SC];   // центр сцены (x, y) и масштаб
+uniform vec4 uScB[SC];   // вращение: скорость, наклон, качание; яркость сцены
+uniform vec4 uFa[2];     // [0] — этот кадр, [1] — прошлый: сцена A, сцена B, смесь
+uniform vec4 uFb[2];     // эмблема, прорисовка шкалы, полёт самолётика (x, y)
+uniform vec4 uOff[2];    // сдвиг сцены по y: раздел уехал целиком (раскрыли «Что сделано»), данные не перестраиваем
+const float PI = 3.14159265;
+
+vec4 tx(int i, int j) { int t = i * STRIDE + j; return texelFetch(uData, ivec2(t % uTexW, t / uTexW), 0); }
+float actOf(int g) { return uAct[g >> 2][g & 3]; }
+float clkOf(int g) { return uClk[g >> 2][g & 3]; }
+
+struct Tg { vec3 p; float e; float flow; float stiff; float anch; };
+
+// Поворот 3D-фигуры сцены: рыскание (постоянное или качание) и наклон
+vec3 spin(vec3 l, int s, float k) {
+  vec4 B = uScB[s];
+  float a = B.z > 0.0 ? sin(uTime * B.x) * B.z : uTime * B.x * k;
+  float c = cos(a), n = sin(a);
+  l = vec3(c * l.x + n * l.z, l.y, -n * l.x + c * l.z);
+  c = cos(B.y); n = sin(B.y);
+  return vec3(l.x, c * l.y - n * l.z, n * l.y + c * l.z);
+}
+vec3 wob(float t, vec4 R) { return vec3(sin(t * 0.9 + R.w * 40.0), cos(t * 0.7 + R.z * 40.0), sin(t * 0.6 + R.x * 40.0)); }
+// Волна сигнала через нейросеть: от входного слоя к выходному
+float wave(float xn) { float h = fract(uTime * 0.3) * 2.8 - 1.4; return exp(-pow((xn - h) / 0.13, 2.0)); }
+
+Tg target(int i, int s, vec4 R, int f) {
+  vec4 A = tx(i, s * 2), B = tx(i, s * 2 + 1);
+  int code = int(A.w + 0.5);
+  int kind = code & 7, g = (code >> 3) & 31;
+  if (kind < 4 || kind == 7) {   // точки в координатах документа; фигуры 4–6 центрирует uScA
+    float oy = uOff[s >> 2][s & 3];
+    if (kind == 7) { B.y += oy; B.z += oy; } else { A.y += oy; if (kind == 2) B.y += oy; }
+  }
+  float act = actOf(g), t = g > 0 ? clkOf(g) : uTime;
+  Tg o; o.flow = 0.12; o.stiff = 1.0; o.anch = float((code >> 8) & 1);
+  vec3 C = vec3(uScA[s].xy, 0.0);
+  vec3 p; float e;
+  if (kind == 0) {            // точка с лёгким «дыханием»
+    p = A.xyz + wob(t, R) * B.x;
+    e = B.y * (1.0 + act * 1.2);
+    o.flow = B.z;
+  } else if (kind == 1) {     // орбита в случайно наклонённой плоскости
+    vec3 n = normalize(vec3(R.z - 0.5, R.w - 0.5, R.y - 0.5) + vec3(0.0, 0.0, 0.001));
+    vec3 u = normalize(cross(n, vec3(0.31, 0.53, 0.79)));
+    vec3 v = cross(n, u);
+    float a = B.y + t * B.z;
+    p = A.xyz + (u * cos(a) + v * sin(a)) * B.x * (1.0 + act * 0.45);
+    e = B.w + act * 0.9;
+  } else if (kind == 2) {     // поток по отрезку A → B; импульс подсвечивает участок
+    float u = fract(R.y + t * B.w);
+    vec3 d = B.xyz - A.xyz;
+    vec2 nn = normalize(vec2(-d.y, d.x) + 1e-5);
+    p = A.xyz + d * u + vec3(nn * (R.w - 0.5) * (3.0 + act * 6.0), (R.z - 0.5) * 22.0 * sin(PI * u));
+    e = (0.3 + act * 1.1) * smoothstep(0.0, 0.06, u) * smoothstep(1.0, 0.94, u) + 0.08;
+    if (g < 16) {
+      float h = uPulse[g >> 2][g & 3];
+      e += 2.6 * exp(-pow((mix(p.x, p.y, uAxis) - h) / 28.0, 2.0));
+    }
+  } else if (kind == 3) {     // медленный дрейф пыли
+    p = A.xyz + vec3(sin(t * B.y + B.z), cos(t * B.y * 0.77 + B.z * 1.3), sin(t * B.y * 0.61 + B.z * 2.1)) * B.x;
+    e = B.w;
+    o.flow = (code & 512) != 0 ? 2.2 : 1.0;
+    o.stiff = 0.22;
+  } else if (kind == 4) {     // эмблема активной карточки: точка из текстуры эмблем
+    int slot = int(B.x + 0.5), em = int(uFb[f].x + 0.5);
+    vec4 E = texelFetch(uEmb, ivec2(slot % uEmbW, em * uEmbRows + slot / uEmbW), 0);
+    p = C + spin(E.xyz * uScA[s].z + wob(t, R) * 1.5, s, 1.0);
+    e = E.w * B.y;
+  } else if (kind == 5) {     // точка вращающейся фигуры (нейросеть, галактика, самолётик)
+    vec3 l = A.xyz + wob(t, R) * B.z;
+    p = C + spin(l, s, B.x);
+    e = B.y * (1.0 + act * 1.6);
+    if (B.w > 0.0) e += B.w * wave(A.x / uScA[s].z);
+    if (g == 26) p += vec3(uFb[f].z, uFb[f].w, uFb[f].z * 0.3);   // самолётик улетает
+  } else if (kind == 6) {     // поток по связи нейросети
+    float u = fract(R.y + uTime * B.w);
+    vec3 l = mix(A.xyz, B.xyz, u) + (vec3(R.z, R.w, R.x) - 0.5) * 4.0;
+    p = C + spin(l, s, 1.0);
+    e = 0.16 + 1.7 * wave(l.x / uScA[s].z) * (0.5 + 0.5 * R.z);
+  } else {                    // двойная спираль шкалы: прорисована до uFb.y, остальное ждёт клубком
+    float u = A.x, dr = uFb[f].y, L = B.z - B.y;
+    if (u <= dr) {
+      float a = u * L / 22.0 + A.y + uTime * 0.9;
+      p = vec3(B.x + cos(a) * A.z, B.y + u * L, sin(a) * A.z);
+      e = B.w * (1.0 + 2.2 * exp(-pow((dr - u) * L / 36.0, 2.0)));
+    } else {
+      vec3 q = normalize(vec3(R.z, R.w, R.y) - 0.5 + 1e-4);
+      float a = uTime * 2.0 + R.x * 6.28;
+      q = vec3(cos(a) * q.x - sin(a) * q.z, q.y, sin(a) * q.x + cos(a) * q.z);
+      p = vec3(B.x, B.y + dr * L, 0.0) + q * (5.0 + R.y * 15.0);
+      e = B.w * 1.5;
+    }
+  }
+  if (o.anch > 0.5) p.y += uScroll;   // привязан к экрану
+  o.p = p; o.e = e;
+  return o;
+}
+
+// Цель с учётом перехода между сценами: у каждой частицы своя задержка — волна
+Tg targetMix(int i, int f, vec4 R) {
+  int sa = int(uFa[f].x + 0.5), sb = int(uFa[f].y + 0.5);
+  Tg a = target(i, sa, R, f);
+  if (sb == sa) return a;
+  Tg b = target(i, sb, R, f);
+  float m = smoothstep(R.x * 0.55, R.x * 0.55 + 0.45, uFa[f].z);
+  a.p = mix(a.p, b.p, m); a.e = mix(a.e, b.e, m);
+  a.flow = mix(a.flow, b.flow, m); a.stiff = mix(a.stiff, b.stiff, m); a.anch = m < 0.5 ? a.anch : b.anch;
+  return a;
+}
+`;
+
+/* Симуляция на GPU: состояние частицы — смещение d от цели и скорость v,
+   две float-текстуры, которые меняются местами каждый кадр (ping-pong).
+   Если цель скачком сменилась (новая сцена, эмблема), d компенсирует скачок:
+   частица остаётся на месте и физически летит к новой цели. */
+const SIM_FS = `#version 300 es
+${COMMON}
+#define TRAIL ${TRAIL}
+uniform highp sampler2D uD, uV;
+uniform int uSW, uCount, uInit, uMoved;
+uniform float uDt, uScrollV, uDScroll, uPush, uIR2;
+uniform vec2 uView;
+uniform vec4 uTrail[TRAIL];   // след курсора: x, y (px экрана), возраст (с), сила
+uniform vec4 uShock[3];       // ударные волны: x, y (документ), время, сила
+layout(location = 0) out vec4 oD;
+layout(location = 1) out vec4 oV;
+
+// Curl-шум: ротор гладкого векторного поля — поток без «стоков», частицы закручиваются
+vec3 curl1(vec3 p, vec3 q, vec3 r) {
+  vec3 s1 = sin(p.yzx + q), c1 = cos(p.yzx + q);
+  vec3 s2 = sin(p.zxy + r), c2 = cos(p.zxy + r);
+  return -vec3(s1.z * s2.z + c1.y * c2.y, s1.x * s2.x + c1.z * c2.z, s1.y * s2.y + c1.x * c2.x);
+}
+vec3 curl(vec3 p, float t) {
+  return curl1(p, vec3(0.3, 1.7, 2.9) + t * 0.23, vec3(1.1, 2.3, 0.7) - t * 0.19)
+       + 0.5 * curl1(p * 2.13 + 3.1, vec3(2.2, 0.4, 1.3) - t * 0.37, vec3(0.6, 1.9, 2.4) + t * 0.31);
+}
+
+void main() {
+  ivec2 c = ivec2(gl_FragCoord.xy);
+  int i = c.y * uSW + c.x;
+  if (i >= uCount) { oD = vec4(0.0); oV = vec4(0.0); return; }
+  vec4 R = tx(i, STRIDE - 1);
+  Tg T = targetMix(i, 0, R);
+  vec3 d = texelFetch(uD, c, 0).xyz, v = texelFetch(uV, c, 0).xyz;
+  if (uInit == 1) {           // старт: частицы на сфере вокруг экрана, слетаются к цели
+    float a = R.z * 6.2832, b = acos(2.0 * R.w - 1.0);
+    vec3 dir = vec3(sin(b) * cos(a), sin(b) * sin(a), cos(b));
+    vec3 s0 = vec3(uView * 0.5, 0.0) + dir * vec3(uView.x * 0.9, uView.y * 0.9, 900.0);
+    s0.y += uScroll;
+    oD = vec4(s0 - T.p, 0.0); oV = vec4(0.0); return;
+  }
+  if (uMoved == 1) { Tg P = targetMix(i, 1, R); d += P.p - T.p; }
+  // Инерция прокрутки: частицы чуть отстают от страницы и пружинят обратно
+  d.y += uDScroll * (0.03 + 0.3 * T.flow) * R.w * (T.anch > 0.5 ? -0.5 : 1.0);
+  // Слишком далёкие частицы (после быстрой прокрутки через несколько сцен) мягко подтягиваем ближе
+  float Lm = max(uView.x, uView.y) * 1.1, dl = length(d);
+  if (dl > Lm) d *= mix(1.0, Lm / dl, 0.2);
+  vec3 pos = T.p + d;
+  vec2 pv = vec2(pos.x, pos.y - uScroll);
+  // Стремление к цели: желаемая скорость ∝ смещению, но не больше vmax
+  float k1 = 3.4 * T.stiff * (0.7 + 0.6 * R.y);
+  vec3 vd = -d * k1;
+  float L = length(vd), vmax = 2000.0 + 1600.0 * R.z;
+  if (L > vmax) vd *= vmax / L;
+  vec3 acc = (vd - v) * 7.0;
+  // Турбулентность: свой поток + сильнее в полёте между сценами и при быстрой прокрутке
+  float turb = T.flow * 120.0 + min(length(d), 600.0) * 2.4 + min(abs(uScrollV), 4000.0) * 0.4 * (0.25 + T.flow);
+  acc += curl(pos * 0.0032, uTime) * turb;
+  // Курсор: отталкивание с завихрением от каждой точки следа
+  for (int j = 0; j < TRAIL; j++) {
+    vec4 tr = uTrail[j];
+    if (tr.w <= 0.0) continue;
+    vec2 dd = pv - tr.xy;
+    float r2 = dot(dd, dd);
+    float g = exp(-r2 * uIR2) * exp(-tr.z * 5.0) * tr.w;
+    if (g < 0.002) continue;
+    vec2 dir = dd * inversesqrt(r2 + 30.0);
+    acc.xy += (dir + vec2(-dir.y, dir.x) * 1.3) * g * uPush;
+    acc.z += g * uPush * 0.5;
+  }
+  // Ударная волна по клику: кольцо расходится со скоростью ~1000 px/с
+  for (int k = 0; k < 3; k++) {
+    vec4 S = uShock[k];
+    float age = uTime - S.z;
+    if (S.w <= 0.0 || age < 0.0 || age > 2.0) continue;
+    vec2 dd = pos.xy - S.xy;
+    float dist = length(dd);
+    float g = exp(-pow((dist - age * 1000.0) / 80.0, 2.0)) * exp(-age * 1.6) * S.w;
+    acc.xy += dd / (dist + 1.0) * g;
+    acc.z += g * 0.6;
+  }
+  v += acc * uDt;
+  float sp = length(v);
+  if (sp > 4500.0) v *= 4500.0 / sp;
+  d += v * uDt;
+  oD = vec4(d, 0.0); oV = vec4(v, 0.0);
+}`;
+
+// Частицы и связи — один вершинный шейдер (uMode 0 — точки, 1 — линии)
+const PARTICLE_VS = `#version 300 es
+${COMMON}
+#define TRAIL ${TRAIL}
+uniform highp sampler2D uD;
+uniform int uSW, uSim, uMode, uCount;
+uniform float uDpr, uSize, uGain, uDens, uIntro, uPushA, uRadA;
+uniform vec2 uView, uCam;
+uniform vec4 uTrail[TRAIL];
+in float aIdx;
+in float aOther;
+in vec4 aInfo;                // для линий: макс. длина, сцена, случайное, яркость
+out vec3 vCol;
+
+vec3 particle(int i, out float e, out float hot, out vec4 R) {
+  R = tx(i, STRIDE - 1);
+  vec3 p;
+  if (uSim == 1) {            // позиция = цель + смещение из симуляции
+    Tg T = targetMix(i, 0, R);
+    vec3 d = texelFetch(uD, ivec2(i % uSW, i / uSW), 0).xyz;
+    p = T.p + d; e = T.e;
+    hot = clamp(length(d) / 140.0, 0.0, 1.0);
+    p.y -= uScroll;
+    return p;
+  }
+  // Запасной режим без симуляции: всё движение считается здесь по времени
+  int sa = int(uFa[0].x + 0.5), sb = int(uFa[0].y + 0.5);
+  Tg ta = target(i, sa, R, 0), tb = ta;
+  if (sb != sa) tb = target(i, sb, R, 0);
+  float m = smoothstep(0.0, 1.0, clamp((uFa[0].z - R.x * 0.45) / 0.55, 0.0, 1.0));
+  p = mix(ta.p, tb.p, m); e = mix(ta.e, tb.e, m);
+  float fly = sin(PI * m);    // в полёте частицы закручиваются и летят на зрителя
+  p += fly * vec3(sin(p.y * 0.006 + uTime * 0.9 + R.y * 6.28) * 160.0,
+                  cos(p.x * 0.005 + uTime * 0.7 + R.z * 6.28) * 110.0, 180.0 + R.w * 320.0);
+  e += fly * 0.4;
+  p.y -= uScroll;
+  float k = clamp((uIntro - R.x * 0.5) / 0.5, 0.0, 1.0);
+  k = 1.0 - pow(1.0 - k, 3.0);
+  if (k < 1.0) {              // при загрузке слетаются из сферы вокруг экрана
+    float a = R.z * 6.2832, b = acos(2.0 * R.w - 1.0);
+    vec3 dir = vec3(sin(b) * cos(a), sin(b) * sin(a), cos(b));
+    p = mix(vec3(uView * 0.5, 0.0) + dir * vec3(uView.x * 0.9, uView.y * 0.9, 900.0), p, k);
+    e += (1.0 - k) * 0.6;
+  }
+  // Курсор как сила на пружине: смещение = сумма откликов h(t) = e^(-z t)·sin(w t)
+  // на прошлые положения курсора — состояние хранить не нужно
+  vec2 disp = vec2(0.0);
+  float ir = 1.0 / (uRadA * uRadA);
+  for (int j = 0; j < TRAIL; j++) {
+    vec4 tr = uTrail[j];
+    if (tr.w <= 0.0) continue;
+    vec2 d = p.xy - tr.xy;
+    float r2 = dot(d, d), g = exp(-r2 * ir);
+    if (g < 0.003) continue;
+    float h = exp(-${SPRING_Z.toFixed(2)} * tr.z) * sin(${SPRING_W.toFixed(2)} * tr.z);
+    vec2 dir = d * inversesqrt(r2 + 4.0);
+    disp += (dir + vec2(-dir.y, dir.x) * 0.4) * (g * h * tr.w);
+  }
+  disp *= uPushA;
+  hot = clamp(length(disp) / 60.0, 0.0, 1.0);
+  p.xy += disp;
+  p.z += length(disp) * 1.5;
+  return p;
+}
+
+vec2 project(vec3 p, out float sc) {
+  vec2 c = uView * 0.5;
+  sc = 900.0 / max(900.0 - p.z, 80.0);                         // перспектива
+  return c + (p.xy - c) * sc + uCam * (p.z / 900.0) * 80.0;     // параллакс от курсора
+}
+
+void main() {
+  if (uMode == 1 && (int(aIdx + 0.5) >= uCount || int(aOther + 0.5) >= uCount)) {
+    gl_Position = vec4(2.0, 2.0, 2.0, 1.0); vCol = vec3(0.0); return;
+  }
+  float e, hot; vec4 R;
+  vec3 p = particle(int(aIdx + 0.5), e, hot, R);
+  float vis = clamp(1.0 + e, 0.0, 1.0);   // e < 0 — «спящая» частица, плавно гаснет
+  e = max(e, 0.0);
+  if (vis < 0.01) { gl_Position = vec4(2.0, 2.0, 2.0, 1.0); vCol = vec3(0.0); gl_PointSize = 0.0; return; }
+  float sc; vec2 sp = project(p, sc);
+  gl_Position = vec4(sp.x / uView.x * 2.0 - 1.0, 1.0 - sp.y / uView.y * 2.0, 0.0, 1.0);
+
+  vec3 BLUE = vec3(0.15, 0.36, 1.0), CYAN = vec3(0.08, 0.86, 1.0), VIO = vec3(0.58, 0.30, 1.0);
+  float h = fract(R.z * 0.6 + sin(p.x * 0.0035 + p.y * 0.002 + uTime * 0.3) * 0.25 + 0.3);
+  vec3 col = mix(BLUE, CYAN, smoothstep(0.25, 0.75, h));
+  col = mix(col, VIO, step(0.86, R.w) * 0.85);
+  float fog = mix(0.22, 1.0, smoothstep(-900.0, -50.0, p.z));   // туман по глубине
+  int sa = int(uFa[0].x + 0.5), sb = int(uFa[0].y + 0.5);
+  // в разделах с текстом тише; uDens: частиц меньше после подстройки — каждая ярче
+  float gain = uGain * uDens * mix(uScB[sa].w, uScB[sb].w, uFa[0].z);
+
+  if (uMode == 0) {
+    col = mix(col, vec3(0.8, 0.96, 1.0), clamp(hot * 0.8 + e * 0.12, 0.0, 1.0));
+    vCol = col * (0.2 + 0.35 * e + 0.7 * hot) * fog * gain * vis;
+    gl_PointSize = clamp(uSize * (0.55 + R.y * 0.9) * sc * (1.0 + e * 0.45 + hot * 0.9) * uDpr, 1.0, 40.0);
+  } else {
+    // Линия: считаем и второй конец, чтобы гасить растянутые связи
+    float e2, hot2; vec4 R2;
+    vec3 q = particle(int(aOther + 0.5), e2, hot2, R2);
+    vis *= clamp(1.0 + e2, 0.0, 1.0); e2 = max(e2, 0.0);
+    float sc2; vec2 sq = project(q, sc2);
+    float fade = 1.0 - smoothstep(aInfo.x * 0.55, aInfo.x, distance(sp, sq));
+    int s = int(aInfo.y + 0.5);
+    float w = (s == sa ? 1.0 - uFa[0].z : 0.0) + (s == sb && sb != sa ? uFa[0].z : 0.0);
+    w = w * w * w;
+    vis *= w * fade;
+    if (vis < 0.002) { gl_Position = vec4(2.0, 2.0, 2.0, 1.0); vCol = vec3(0.0); return; }
+    // Вспышки: редкие случайные, бегущая волна и возбуждение у курсора
+    float fl = pow(max(0.0, sin(uTime * (0.8 + aInfo.z * 1.6) + aInfo.z * 90.0)), 24.0);
+    float wv = pow(0.5 + 0.5 * sin(sp.x * 0.008 - sp.y * 0.003 - uTime * 2.2), 10.0);
+    vec2 dm = sp - uTrail[0].xy;
+    float near = uTrail[0].w > 0.0 ? exp(-dot(dm, dm) / (180.0 * 180.0)) : 0.0;
+    float a = 0.07 + 0.6 * fl + 0.25 * wv + 0.55 * near + 0.14 * max(e, e2) + 0.6 * max(hot, hot2);
+    vCol = mix(col, vec3(0.6, 0.95, 1.0), 0.4) * a * vis * fog * aInfo.w * gain;
+  }
+}`;
+
+const PARTICLE_FS = `#version 300 es
+precision highp float;
+precision highp int;
+uniform int uMode;
+in vec3 vCol;
+out vec4 o;
+void main() {
+  if (uMode == 0) {
+    vec2 q = gl_PointCoord * 2.0 - 1.0;
+    float r2 = dot(q, q);
+    if (r2 > 1.0) discard;
+    float a = exp(-r2 * 3.5) * 0.7 + exp(-r2 * 16.0) * 0.6;   // мягкий ореол + яркое ядро
+    o = vec4(vCol * a, a);
+  } else o = vec4(vCol, 1.0);
+}`;
+
+const QUAD_VS = `#version 300 es
+in vec2 aPos;
+void main() { gl_Position = vec4(aPos, 0.0, 1.0); }`;
+
+// Уменьшение в 4 раза: 4 выборки с билинейной фильтрацией покрывают блок 4×4
+const DOWN_FS = `#version 300 es
+precision highp float;
+uniform sampler2D uTex; uniform vec2 uTexel, uOut;
+out vec4 o;
+void main() {
+  vec2 uv = gl_FragCoord.xy / uOut;
+  vec3 c = texture(uTex, uv + uTexel * vec2(-1.0, -1.0)).rgb + texture(uTex, uv + uTexel * vec2(1.0, -1.0)).rgb
+         + texture(uTex, uv + uTexel * vec2(-1.0, 1.0)).rgb + texture(uTex, uv + uTexel * vec2(1.0, 1.0)).rgb;
+  o = vec4(c * 0.25, 1.0);
+}`;
+
+// Гауссово размытие в одну сторону: 9 отсчётов за 5 выборок
+const BLUR_FS = `#version 300 es
+precision highp float;
+uniform sampler2D uTex; uniform vec2 uDir, uOut;
+out vec4 o;
+void main() {
+  vec2 uv = gl_FragCoord.xy / uOut;
+  vec3 c = texture(uTex, uv).rgb * 0.2270270;
+  c += (texture(uTex, uv + uDir * 1.3846154).rgb + texture(uTex, uv - uDir * 1.3846154).rgb) * 0.3162162;
+  c += (texture(uTex, uv + uDir * 3.2307692).rgb + texture(uTex, uv - uDir * 3.2307692).rgb) * 0.0702703;
+  o = vec4(c, 1.0);
+}`;
+
+// Фон + сцена + свечение. uMode 0 — только фон (режим без свечения)
+const COMP_FS = `#version 300 es
+precision highp float;
+uniform sampler2D uScene, uB1, uB2;
+uniform vec2 uRes;
+uniform int uMode;
+uniform float uScrollN, uTime;
+out vec4 o;
+float hash(vec2 p) { return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453); }
+float blob(vec2 p, vec2 c, float k) { vec2 d = p - c; return exp(-k * dot(d, d)); }
+vec3 bg(vec2 uv) {
+  float asp = uRes.x / uRes.y, s = uScrollN;
+  vec2 p = vec2(uv.x * asp, uv.y);
+  vec3 c = vec3(0.008, 0.011, 0.026);
+  c += vec3(0.015, 0.05, 0.17) * blob(p, vec2(0.22 * asp, 0.95 + s * 0.3), 3.0);
+  c += vec3(0.07, 0.025, 0.15) * blob(p, vec2(0.88 * asp, 0.10 + s * 0.4), 4.0);
+  c += vec3(0.0, 0.045, 0.07) * blob(p, vec2((0.5 + 0.2 * sin(s * 6.0)) * asp, 0.45), 6.0);
+  float v = distance(uv, vec2(0.5));
+  return c * (1.0 - 0.55 * v * v);
+}
+void main() {
+  vec2 uv = gl_FragCoord.xy / uRes;
+  vec3 c = bg(uv);
+  if (uMode == 1) {
+    c += texture(uScene, uv).rgb + texture(uB1, uv).rgb * 0.8 + texture(uB2, uv).rgb * 0.9;
+    c = 1.0 - exp(-c * 1.25);   // мягкий тонмаппинг: яркое не выжигается в белое
+  }
+  c += (hash(gl_FragCoord.xy + fract(uTime) * 97.0) - 0.5) * (1.5 / 255.0);   // дизеринг против полос
+  o = vec4(c, 1.0);
+}`;
+
+/* =====================================================================
+   WebGL: программы, буферы, цели рендера, выбор уровня симуляции
+   ===================================================================== */
+const canvas = $('#gfx');
+let gl = null, progs = {}, dataTex, embTex, quadVAO, ptsVAO, linesVAO, ptsBuf, linesBuf, lineCount = 0, dataRows = 0;
+let rt = null;              // цели рендера для свечения
+let SIM = 0;                // 1 — float32, 2 — half-float, 0 — аналитический режим
+let sim = null;             // ping-pong текстуры симуляции
+const SW = 512;             // ширина текстуры состояния
+
+// Сборка программы в два шага: запуск (драйвер собирает в фоне) и проверка результата
+function compileStart(vs, fs) {
+  const mk = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; };
+  const p = gl.createProgram(), sv = mk(gl.VERTEX_SHADER, vs), sf = mk(gl.FRAGMENT_SHADER, fs);
+  gl.attachShader(p, sv); gl.attachShader(p, sf);
+  ['aIdx', 'aOther', 'aInfo'].forEach((n, i) => gl.bindAttribLocation(p, i, n));
+  gl.bindAttribLocation(p, 0, 'aPos');
+  gl.linkProgram(p);
+  return { p, sv, sf };
+}
+function compileEnd({ p, sv, sf }) {
+  if (!gl.getProgramParameter(p, gl.LINK_STATUS)) {
+    throw new Error([sv, sf].map(s => gl.getShaderInfoLog(s)).join(' ').trim() || gl.getProgramInfoLog(p));
+  }
+  const u = {};
+  for (let i = 0, n = gl.getProgramParameter(p, gl.ACTIVE_UNIFORMS); i < n; i++) {
+    const name = gl.getActiveUniform(p, i).name.replace(/\[0\]$/, '');
+    u[name] = gl.getUniformLocation(p, name);
+  }
+  return { p, u };
+}
+
+function floatTex(ifmt, type, w, h, data = null) {
+  const t = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, t);
+  gl.texImage2D(gl.TEXTURE_2D, 0, ifmt, w, h, 0, gl.RGBA, type, data);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  return t;
+}
+// Кадр-буфер с двумя float-целями (d и v). null — если драйвер такой не умеет
+function simTarget(ifmt, type, w, h) {
+  const d = floatTex(ifmt, type, w, h), v = floatTex(ifmt, type, w, h);
+  const fb = gl.createFramebuffer();
+  gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
+  gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, d, 0);
+  gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT1, gl.TEXTURE_2D, v, 0);
+  gl.drawBuffers([gl.COLOR_ATTACHMENT0, gl.COLOR_ATTACHMENT1]);
+  const ok = gl.checkFramebufferStatus(gl.FRAMEBUFFER) === gl.FRAMEBUFFER_COMPLETE;
+  gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+  if (!ok) { gl.deleteFramebuffer(fb); gl.deleteTexture(d); gl.deleteTexture(v); return null; }
+  return { d, v, fb };
+}
+
+// Цепочка: float32-цели → half-float → аналитическое движение (без состояния)
+function initSim() {
+  const force = qs.get('sim');
+  if (REDUCED || force === '0') return 0;
+  const f32 = gl.getExtension('EXT_color_buffer_float');
+  const f16 = f32 || gl.getExtension('EXT_color_buffer_half_float');
+  const h = Math.ceil(NMAX / SW);
+  const tiers = [];
+  if (f32 && force !== '16') tiers.push([1, gl.RGBA32F, gl.FLOAT]);
+  if (f16) tiers.push([2, gl.RGBA16F, gl.HALF_FLOAT]);
+  for (const [tier, ifmt, type] of tiers) {
+    const a = simTarget(ifmt, type, SW, h);
+    const b = a && simTarget(ifmt, type, SW, h);
+    if (a && b) { sim = { a, b, h, init: true }; return tier; }
+    freeSim(a, b);
+  }
+  return 0;
+}
+function freeSim(...ts) { ts.forEach(t => { if (t) { gl.deleteFramebuffer(t.fb); gl.deleteTexture(t.d); gl.deleteTexture(t.v); } }); }
+
+async function initGL() {
+  if (qs.has('nogl')) return false;
+  try {
+    gl = canvas.getContext('webgl2', {
+      antialias: false, alpha: false, depth: false, stencil: false,
+      premultipliedAlpha: false, powerPreference: 'high-performance', preserveDrawingBuffer: qs.has('og'),
+    });
+    if (!gl) return false;
+    const my = gl;
+    rt = null; sim = null;
+    SIM = initSim();
+    const pend = { part: compileStart(PARTICLE_VS, PARTICLE_FS), down: compileStart(QUAD_VS, DOWN_FS),
+      blur: compileStart(QUAD_VS, BLUR_FS), comp: compileStart(QUAD_VS, COMP_FS) };
+    if (SIM) pend.sim = compileStart(QUAD_VS, SIM_FS);
+    // Первая сборка шейдеров без кэша — до 1–2 с. С KHR_parallel_shader_compile страница её не ждёт
+    const par = gl.getExtension('KHR_parallel_shader_compile');
+    if (par) while (gl === my && !my.isContextLost() && !Object.values(pend).every(c => my.getProgramParameter(c.p, par.COMPLETION_STATUS_KHR))) await new Promise(r => setTimeout(r, 20));
+    if (gl !== my || my.isContextLost()) return false;
+    ['part', 'down', 'blur', 'comp'].forEach(k => { progs[k] = compileEnd(pend[k]); });
+    if (SIM) {
+      try { progs.sim = compileEnd(pend.sim); } catch (err) { console.info('Симуляция выключена:', err.message); freeSim(sim.a, sim.b); sim = null; SIM = 0; }
+    }
+
+    quadVAO = gl.createVertexArray(); gl.bindVertexArray(quadVAO);
+    const qb = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, qb);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+
+    ptsVAO = gl.createVertexArray(); gl.bindVertexArray(ptsVAO);
+    ptsBuf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, ptsBuf);
+    const idx = new Float32Array(NMAX); for (let i = 0; i < NMAX; i++) idx[i] = i;
+    gl.bufferData(gl.ARRAY_BUFFER, idx, gl.STATIC_DRAW);
+    gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0, 1, gl.FLOAT, false, 0, 0);
+
+    linesVAO = gl.createVertexArray(); gl.bindVertexArray(linesVAO);
+    linesBuf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, linesBuf);
+    gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0, 1, gl.FLOAT, false, 24, 0);
+    gl.enableVertexAttribArray(1); gl.vertexAttribPointer(1, 1, gl.FLOAT, false, 24, 4);
+    gl.enableVertexAttribArray(2); gl.vertexAttribPointer(2, 4, gl.FLOAT, false, 24, 8);
+    gl.bindVertexArray(null);
+
+    dataTex = gl.createTexture(); dataRows = 0;
+    // Эмблемы заливаются по одной после старта (buildEmbAsync), пока — нули
+    embTex = floatTex(gl.RGBA32F, gl.FLOAT, EMB_W, EMB_ROWS * EMB_KEYS.length, null);
+    return true;
+  } catch (err) {
+    console.info('WebGL выключен:', err.message);
+    gl = null;
+    return false;
+  }
+}
+
+function uploadData({ D, rows, lines }) {
+  gl.bindTexture(gl.TEXTURE_2D, dataTex);
+  gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
+  if (rows !== dataRows) {
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA32F, TEXW, rows, 0, gl.RGBA, gl.FLOAT, D);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+    dataRows = rows;
+  } else gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, 0, TEXW, rows, gl.RGBA, gl.FLOAT, D);
+
+  lineCount = lines.length / 5;
+  const L = new Float32Array(lineCount * 12);
+  for (let k = 0; k < lineCount; k++) {
+    const o = k * 5, i = lines[o], j = lines[o + 1], len = lines[o + 2], s = lines[o + 3], w = lines[o + 4], r = rnd();
+    L.set([i, j, len, s, r, w, j, i, len, s, r, w], k * 12);
+  }
+  gl.bindBuffer(gl.ARRAY_BUFFER, linesBuf); gl.bufferData(gl.ARRAY_BUFFER, L, gl.STATIC_DRAW);
+}
+
+function rtTarget(w, h) {
+  const t = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, t);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, w, h, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  const f = gl.createFramebuffer();
+  gl.bindFramebuffer(gl.FRAMEBUFFER, f);
+  gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, t, 0);
+  return { t, f, w, h };
+}
+function freeTargets() {
+  if (!rt) return;
+  Object.values(rt).forEach(x => { gl.deleteTexture(x.t); gl.deleteFramebuffer(x.f); });
+  rt = null;
+}
+function resizeCanvas() {
+  const w = Math.max(1, Math.round(canvas.clientWidth * DPR)), h = Math.max(1, Math.round(canvas.clientHeight * DPR));
+  if (w === canvas.width && h === canvas.height && (rt || !BLOOM)) return;
+  canvas.width = w; canvas.height = h;
+  freeTargets();
+  if (BLOOM) {
+    const w4 = Math.max(1, w >> 2), h4 = Math.max(1, h >> 2), w8 = Math.max(1, w >> 3), h8 = Math.max(1, h >> 3);
+    rt = { scene: rtTarget(w, h), a1: rtTarget(w4, h4), b1: rtTarget(w4, h4), a2: rtTarget(w8, h8), b2: rtTarget(w8, h8) };
+  }
+  gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+}
+
+/* =====================================================================
+   Состояние кадра: прокрутка, курсор, время, сцены
+   ===================================================================== */
+let geoCache = null;
+let simT = 0, lastNow = 0, introStart = -1;
+let sCur = 0, stA = 0, stB = 0, stMix = 0;
+let lastScroll = scrollY, dScroll = 0, scrollV = 0;
+let cam = [0, 0];
+const ptr = { x: -9999, y: -9999, on: false };
+const ring = Array.from({ length: TRAIL }, () => ({ x: 0, y: 0, t: -99, s: 0 }));
+let head = 0, lastSample = 0;
+const trailBuf = new Float32Array(TRAIL * 4);
+const shocks = new Float32Array(12);
+let shockHead = 0;
+let hoverCard = -1, embCur = 0, hoverGrp = -1;
+let drawCur = 0;
+let flyT0 = -1, flyX = 0, flyY = 0;
+const fa = new Float32Array(8), fb = new Float32Array(8);   // [0..3] — этот кадр, [4..7] — прошлый
+const scA = new Float32Array(SC * 4), scB = new Float32Array(SC * 4);
+let moved = 0;
+let busy = false;           // в кадре что-то меняется: переход, импульсы, подсветка — «покой» не включаем
+const offs = new Float32Array(8);   // сдвиги сцен по y (uOff)
+
+// Сцена по прокрутке: сумма плавных ступенек на границах разделов (0..6, дробное — переход)
+function sceneFromScroll() {
+  if (!geoCache) return 0;
+  const c = scrollY + innerHeight * 0.5, H = innerHeight;
+  let s = 0;
+  geoCache.bounds.forEach(y => { s += sstep(y - H * 0.32, y + H * 0.12, c); });
+  return s;
+}
+function splitState(v) {
+  const k = Math.floor(v + 1e-4), f = v - k;
+  if (f < 0.001 || k >= SC - 1) { stA = stB = Math.min(k, SC - 1); stMix = 0; }
+  else if (f > 0.999) { stA = stB = k + 1; stMix = 0; }
+  else { stA = k; stB = k + 1; stMix = f; }
+}
+
+// Какая карточка проекта активна: под курсором, иначе — ближайшая к центру экрана
+let actCardEl = null;
+function activeCard() {
+  // Карточка в фокусе или под курсором ушла с экрана — снова выбираем по центру
+  if (hoverCard >= 0) { const r = cardEls[hoverCard].getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) hoverCard = -1; }
+  let best = hoverCard;
+  if (best < 0) {
+    const c = innerHeight / 2; let bd = 1e9;
+    cardEls.forEach((el, i) => { const r = el.getBoundingClientRect(); const d = Math.abs(r.top + Math.min(r.height, innerHeight * 0.6) / 2 - c); if (d < bd) { bd = d; best = i; } });
+  }
+  const el = cardEls[best];
+  if (el && el !== actCardEl) {
+    if (actCardEl) actCardEl.classList.remove('act');
+    el.classList.add('act'); actCardEl = el;
+    $('#embCap').textContent = el.querySelector('h3').textContent;
+  }
+  return el ? Math.max(0, EMB_KEYS.indexOf(el.dataset.emb)) : 0;
+}
+function activeGroup() {
+  if (hoverGrp >= 0) return hoverGrp;
+  if (FINE) return -1;
+  const c = innerHeight / 2; let best = -1, bd = innerHeight * 0.3;
+  grpEls.forEach((el, i) => { const r = el.getBoundingClientRect(); const d = Math.abs(r.top + r.height / 2 - c); if (d < bd) { bd = d; best = i; } });
+  return best;
+}
+
+function update(dt) {
+  simT += dt;
+  const H = innerHeight, W = innerWidth;
+  dScroll = scrollY - lastScroll; lastScroll = scrollY;
+  if (dt > 0) scrollV += (dScroll / dt - scrollV) * (1 - Math.exp(-dt * 10));
+  // Переход между сценами чуть отстаёт от прокрутки — так он плавнее
+  const sT = sceneFromScroll();
+  busy = Math.abs(sT - sCur) > 0.002;
+  sCur = REDUCED || dt === 0 ? sT : sCur + (sT - sCur) * (1 - Math.exp(-dt * 5));
+  splitState(sCur);
+
+  // Эмблема, прорисовка шкалы, самолётик — всё, что меняет форму сцены
+  const inProj = stA === 4 || stB === 4;
+  if (inProj || REDUCED) embCur = activeCard();
+  let drawT = 0;
+  if (geoCache && geoCache.marks.length) {
+    const M = geoCache.marks, y0 = M[0].y - 40, y1 = M[M.length - 1].y + 90;
+    drawT = clamp((scrollY + H * 0.72 - y0) / (y1 - y0), 0, 1);
+  }
+  drawCur = REDUCED || dt === 0 ? drawT : drawCur + (drawT - drawCur) * (1 - Math.exp(-dt * 6));
+  if (flyT0 >= 0) {
+    const tau = simT - flyT0;
+    if (tau < 0.95) { flyX = tau * tau * W * 1.1; flyY = -tau * tau * H * 0.85; }
+    else { flyX = flyY = 0; if (tau > 2.6) flyT0 = -1; }
+  }
+  fa.copyWithin(4, 0, 4); fb.copyWithin(4, 0, 4);
+  fa[0] = stA; fa[1] = stB; fa[2] = stMix; fa[3] = 0;
+  fb[0] = embCur; fb[1] = drawCur;
+  // Полёт самолётика непрерывный: прошлый кадр = этот, частицы летят вместе с целью.
+  // При возврате на место (скачок) — компенсация: самолётик собирается заново
+  const flyJump = Math.abs(flyX - fb[2]) > W * 0.5;
+  fb[2] = flyX; fb[3] = flyY;
+  if (!flyJump) { fb[6] = flyX; fb[7] = flyY; }
+  moved = 0;
+  for (let k = 0; k < 4; k++) if (fa[k] !== fa[k + 4] || fb[k] !== fb[k + 4]) moved = 1;
+
+  // След курсора: точка каждые SAMPLE секунд, даже если курсор стоит на месте
+  while (simT - lastSample >= SAMPLE) {
+    lastSample += SAMPLE;
+    if (simT - lastSample > 1) lastSample = simT;
+    head = (head + 1) % TRAIL;
+    const r = ring[head]; r.x = ptr.x; r.y = ptr.y; r.t = lastSample; r.s = ptr.on && !REDUCED ? 1 : 0;
+  }
+  for (let k = 0; k < TRAIL; k++) {
+    const r = ring[(head - k + TRAIL) % TRAIL], age = simT - r.t;
+    trailBuf[k * 4] = r.x; trailBuf[k * 4 + 1] = r.y; trailBuf[k * 4 + 2] = age; trailBuf[k * 4 + 3] = age < TRAIL * SAMPLE ? r.s : 0;
+  }
+  // Параллакс: за курсором на десктопе, медленное покачивание на телефоне
+  const tc = MOBILE || !ptr.on ? [Math.sin(simT * 0.3) * 0.35, Math.cos(simT * 0.23) * 0.25] : [ptr.x / W * 2 - 1, ptr.y / H * 2 - 1];
+  const kc = 1 - Math.exp(-dt * 3);
+  cam[0] += (tc[0] - cam[0]) * kc; cam[1] += (tc[1] - cam[1]) * kc;
+
+  // Навыки: подсвечено скопление группы под курсором (на телефоне — у центра экрана)
+  const gA = stA === 5 || stB === 5 ? activeGroup() : -1;
+  grpEls.forEach((el, k) => { actT[19 + k] = k === gA ? 1 : 0; el.classList.toggle('act', k === gA); });
+  actT[26] = flyT0 >= 0 ? 0.35 : 0;
+  const ka = REDUCED || dt === 0 ? 1 : 1 - Math.exp(-dt * 5);
+  for (let k = 0; k < 32; k++) {
+    if (Math.abs(actT[k] - act[k]) > 0.01) busy = true;
+    act[k] += (actT[k] - act[k]) * ka; clk[k] += dt * (1 + act[k] * 1.8);
+  }
+  if (moved || pulses.length || flyT0 >= 0 || Math.abs(drawT - drawCur) > 0.002) busy = true;
+  // Импульсы по веткам графа
+  pulseArr.fill(-1e5);
+  const now = performance.now() / 1000;
+  for (let k = pulses.length - 1; k >= 0; k--) {
+    const p = pulses[k], t = (now - p.t0) / p.dur;
+    if (t > 1.3) { pulses.splice(k, 1); continue; }
+    pulseArr[p.g] = p.a + (p.b - p.a) * Math.min(t, 1.3);
+  }
+}
+
+// Ступени «яркости» сцен и силы курсора: в разделах с текстом частицы тише
+const GAIN0 = MOBILE ? [1, 0.85, 0.85, 0.8, 0.6, 0.55, 1] : [1, 0.9, 0.9, 0.85, 0.9, 0.75, 1];
+const PUSH = [1, 0.7, 0.45, 0.5, 0.5, 0.45, 0.8];
+function sceneParams() {
+  const g = geoCache;
+  const set = (s, a, b) => { scA.set(a, s * 4); scB.set(b, s * 4); };
+  // Эмблема и галактика за карточками (узкий экран) — тише, как на телефоне
+  const GAIN = GAIN0.slice();
+  if (g.embBehind) GAIN[4] = Math.min(GAIN[4], 0.6);
+  if (g.galBehind) GAIN[5] = Math.min(GAIN[5], 0.55);
+  set(0, [0, 0, 1, 0], [0, 0, 0, GAIN[0]]);
+  set(1, [g.net.x, g.net.y, g.net.S, 0], [0.22, 0.22, 0.62, GAIN[1]]);   // качается, а не вращается: слои всегда видны
+  set(2, [0, 0, 1, 0], [0, 0, 0, GAIN[2]]);
+  set(3, [0, 0, 1, 0], [0, 0, 0, GAIN[3]]);
+  set(4, [g.emb.x, g.emb.y, g.emb.S, 1], [0.5, 0.12, 0.42, GAIN[4]]);
+  set(5, [g.gal.x, g.gal.y, g.gal.S, 1], [0.1, -1.08, 0, GAIN[5]]);
+  set(6, [g.plane.x, g.plane.y, g.plane.S, 0], [0.7, 0.32, 0.26, GAIN[6]]);
+}
+
+function setCommon(u) {
+  gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, dataTex); gl.uniform1i(u.uData, 0);
+  gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, embTex); gl.uniform1i(u.uEmb, 1);
+  gl.uniform1i(u.uTexW, TEXW); gl.uniform1i(u.uEmbW, EMB_W); gl.uniform1i(u.uEmbRows, EMB_ROWS);
+  gl.uniform1f(u.uTime, simT); gl.uniform1f(u.uScroll, scrollY);
+  gl.uniform1f(u.uAxis, geoCache && !geoCache.work.horiz ? 1 : 0);
+  gl.uniform4fv(u.uAct, act); gl.uniform4fv(u.uClk, clk); gl.uniform4fv(u.uPulse, pulseArr);
+  gl.uniform4fv(u.uScA, scA); gl.uniform4fv(u.uScB, scB);
+  gl.uniform4fv(u.uFa, fa); gl.uniform4fv(u.uFb, fb); gl.uniform4fv(u.uOff, offs);
+}
+const pushK = () => PUSH[stA] + (PUSH[stB] - PUSH[stA]) * stMix;
+const quad = () => { gl.bindVertexArray(quadVAO); gl.drawArrays(gl.TRIANGLES, 0, 3); };
+
+function simStep(dt) {
+  const P = progs.sim, u = P.u, src = sim.a, dst = sim.b;
+  gl.disable(gl.BLEND);
+  gl.useProgram(P.p);
+  setCommon(u);
+  gl.activeTexture(gl.TEXTURE2); gl.bindTexture(gl.TEXTURE_2D, src.d); gl.uniform1i(u.uD, 2);
+  gl.activeTexture(gl.TEXTURE3); gl.bindTexture(gl.TEXTURE_2D, src.v); gl.uniform1i(u.uV, 3);
+  gl.uniform1i(u.uSW, SW); gl.uniform1i(u.uCount, N);
+  gl.uniform1i(u.uInit, sim.init ? 1 : 0); gl.uniform1i(u.uMoved, moved);
+  gl.uniform1f(u.uDt, Math.min(dt, 1 / 30));
+  // Инерцию даёт только обычная прокрутка: прыжок по якорю не разбрасывает частицы
+  gl.uniform1f(u.uScrollV, scrollV); gl.uniform1f(u.uDScroll, clamp(dScroll, -70, 70));
+  gl.uniform1f(u.uPush, (MOBILE ? 3800 : 5200) * pushK());
+  gl.uniform1f(u.uIR2, 1 / (RAD * RAD));
+  gl.uniform2f(u.uView, canvas.clientWidth, canvas.clientHeight);
+  gl.uniform4fv(u.uTrail, trailBuf);
+  gl.uniform4fv(u.uShock, shocks);
+  gl.bindFramebuffer(gl.FRAMEBUFFER, dst.fb);
+  gl.viewport(0, 0, SW, Math.ceil(N / SW));
+  quad();
+  sim.a = dst; sim.b = src; sim.init = false;
+}
+
+function render() {
+  const vw = canvas.clientWidth, vh = canvas.clientHeight;
+  const P = progs.part, u = P.u;
+  const drawScene = () => {
+    gl.useProgram(P.p);
+    setCommon(u);
+    if (SIM) { gl.activeTexture(gl.TEXTURE2); gl.bindTexture(gl.TEXTURE_2D, sim.a.d); gl.uniform1i(u.uD, 2); }
+    gl.uniform1i(u.uSW, SW); gl.uniform1i(u.uSim, SIM ? 1 : 0); gl.uniform1i(u.uCount, N);
+    gl.uniform1f(u.uDpr, DPR);
+    gl.uniform1f(u.uIntro, REDUCED || introStart < 0 ? 1 : clamp((simT - introStart) / 1.5, 0, 1));
+    gl.uniform1f(u.uPushA, (MOBILE ? 55 : 85) * pushK() * (SPRING_Z * SPRING_Z + SPRING_W * SPRING_W) / SPRING_W * SAMPLE);
+    gl.uniform1f(u.uRadA, RAD);
+    gl.uniform1f(u.uGain, BLOOM && rt ? 1 : 1.5);
+    gl.uniform1f(u.uDens, Math.min(2.2, Math.pow(NMAX / N, 0.7)));
+    gl.uniform1f(u.uSize, MOBILE ? 2.1 : 2.0);
+    gl.uniform2f(u.uView, vw, vh);
+    gl.uniform2f(u.uCam, cam[0], cam[1]);
+    gl.uniform4fv(u.uTrail, trailBuf);
+    gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE);   // аддитивно: наложение = свечение
+    if (LINES && lineCount) { gl.uniform1i(u.uMode, 1); gl.bindVertexArray(linesVAO); gl.drawArrays(gl.LINES, 0, lineCount * 2); }
+    gl.uniform1i(u.uMode, 0); gl.bindVertexArray(ptsVAO); gl.drawArrays(gl.POINTS, 0, N);
+    gl.disable(gl.BLEND);
+  };
+  const pass = (prog, dst, set) => {
+    gl.bindFramebuffer(gl.FRAMEBUFFER, dst ? dst.f : null);
+    const w = dst ? dst.w : canvas.width, h = dst ? dst.h : canvas.height;
+    gl.viewport(0, 0, w, h);
+    gl.useProgram(prog.p); set(prog.u);
+    if (prog.u.uOut) gl.uniform2f(prog.u.uOut, w, h);
+    quad();
+  };
+  const tex = (unit, t, loc) => { gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, t); gl.uniform1i(loc, unit); };
+  const scrollN = scrollY / Math.max(1, root.scrollHeight - innerHeight);
+  const compU = (uu, mode) => {
+    gl.uniform2f(uu.uRes, canvas.width, canvas.height); gl.uniform1i(uu.uMode, mode);
+    gl.uniform1f(uu.uScrollN, scrollN); gl.uniform1f(uu.uTime, simT);
+  };
+  if (BLOOM && rt) {
+    // 1) частицы в текстуру  2) уменьшить и размыть дважды  3) сложить с фоном
+    gl.bindFramebuffer(gl.FRAMEBUFFER, rt.scene.f);
+    gl.viewport(0, 0, rt.scene.w, rt.scene.h);
+    gl.clearColor(0, 0, 0, 1); gl.clear(gl.COLOR_BUFFER_BIT);
+    drawScene();
+    pass(progs.down, rt.a1, uu => { tex(0, rt.scene.t, uu.uTex); gl.uniform2f(uu.uTexel, 1 / rt.scene.w, 1 / rt.scene.h); });
+    pass(progs.blur, rt.b1, uu => { tex(0, rt.a1.t, uu.uTex); gl.uniform2f(uu.uDir, 1 / rt.a1.w, 0); });
+    pass(progs.blur, rt.a1, uu => { tex(0, rt.b1.t, uu.uTex); gl.uniform2f(uu.uDir, 0, 1 / rt.a1.h); });
+    pass(progs.down, rt.a2, uu => { tex(0, rt.a1.t, uu.uTex); gl.uniform2f(uu.uTexel, 0.5 / rt.a1.w, 0.5 / rt.a1.h); });
+    pass(progs.blur, rt.b2, uu => { tex(0, rt.a2.t, uu.uTex); gl.uniform2f(uu.uDir, 1 / rt.a2.w, 0); });
+    pass(progs.blur, rt.a2, uu => { tex(0, rt.b2.t, uu.uTex); gl.uniform2f(uu.uDir, 0, 1 / rt.a2.h); });
+    pass(progs.comp, null, uu => { tex(0, rt.scene.t, uu.uScene); tex(1, rt.a1.t, uu.uB1); tex(2, rt.a2.t, uu.uB2); compU(uu, 1); });
+  } else {
+    // Без свечения: фон и частицы сразу на экран
+    pass(progs.comp, null, uu => compU(uu, 0));
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    drawScene();
+  }
+}
+
+/* =====================================================================
+   Цикл, пауза и подстройка качества под железо
+   ===================================================================== */
+let raf = 0, running = false;
+// Частота экрана HZ меряется до старта графики. Рисуем каждый kAct-й кадр экрана (не чаще ~60 к/с),
+// в покое — каждый kIdle-й (~30 к/с): ноутбук не греется на 120–300 Гц
+let HZ = 60, kAct = 1, kIdle = 2, lastActive = 0, idleNow = false;
+function setHz(h) { HZ = h; kAct = Math.max(1, Math.floor(h / 60 + 0.25)); kIdle = Math.max(1, Math.floor(h / 30 + 0.25)); }
+const poke = () => { lastActive = performance.now(); };
+['pointermove', 'pointerdown', 'wheel', 'touchstart', 'touchmove', 'keydown', 'scroll', 'focusin']
+  .forEach(t => addEventListener(t, poke, { passive: true, capture: true }));
+// Медиана интервалов rAF, пока страница ничего не рисует
+const probeHz = () => new Promise(res => {
+  const ts = [];
+  const f = t => {
+    ts.push(t);
+    if (ts.length < 12) { requestAnimationFrame(f); return; }
+    const iv = ts.slice(1).map((v, k) => v - ts[k]).sort((a, b) => a - b);
+    res(clamp(1000 / iv[iv.length >> 1], 20, 360));
+  };
+  requestAnimationFrame(f);
+});
+
+/* Ступени качества. Понижаем, только если кадров меньше 0,85 от цели (частота экрана с потолком 60)
+   два окна по 1 с подряд. Две ступени подряд не подняли FPS хотя бы на 10 % — упор не в графику:
+   их возвращаем и дальше не режем. После 12 с запаса пробуем вернуть одну ступень обратно. */
+let LEVELS = null;
+const Q = { level: 0, phase: 'watch', bad: 0, good: 0, before: 0, miss: 0, locked: false, floor: 0, tried: {}, log: [] };
+function makeLevels() {
+  const L = [{ bloom: BLOOM, n: 1, dpr1: false, lines: true }];
+  const push = ch => L.push(Object.assign({}, L[L.length - 1], ch(L[L.length - 1])));
+  if (BLOOM) push(() => ({ bloom: false }));
+  push(p => ({ n: p.n * 0.6 }));
+  if (Math.min(window.devicePixelRatio || 1, DPR_MAX) > 1) push(() => ({ dpr1: true }));
+  push(p => ({ n: p.n * 0.6 }));
+  push(() => ({ lines: false }));
+  push(p => ({ n: p.n * 0.6 }));
+  return L;
+}
+function setLevel(k) {
+  const q = LEVELS[k];
+  Q.level = k;
+  if (BLOOM && !q.bloom) freeTargets();
+  BLOOM = q.bloom; LINES = q.lines;
+  N = Math.max(4000, Math.round(NMAX * q.n));
+  dprCap = q.dpr1 ? 1 : 9; DPR = dprNow();
+  resizeCanvas();
+}
+function judge(fps, tgt) {
+  Q.log.push(Math.round(fps)); if (Q.log.length > 12) Q.log.shift();
+  // Экран оказался быстрее, чем намерили на старте, — поправить частоту
+  if (fps > tgt * 1.2 && Q.phase === 'watch') { setHz(HZ * fps / tgt); return; }
+  // Порог считаем от цели, но не выше 60 к/с: на 75–144 Гц ровные 60 к/с — норма, не повод срезать качество
+  const thr = Math.min(tgt, 60) * 0.85, last = LEVELS.length - 1;
+  const down = ref => { Q.before = ref; setLevel(Q.level + 1); Q.phase = 'settle'; };
+  switch (Q.phase) {
+    case 'watch':
+      if (fps < thr) {
+        Q.good = 0;
+        if (++Q.bad >= 2 && !Q.locked && Q.level < last) { Q.bad = 0; down(fps); }
+      } else {
+        Q.bad = 0;
+        if (++Q.good >= 12 && Q.level > Q.floor && !Q.tried[Q.level]) {
+          Q.tried[Q.level] = 1; Q.good = 0; setLevel(Q.level - 1); Q.phase = 'up-settle';
+        }
+      }
+      break;
+    case 'settle': Q.phase = 'verify'; break;       // первое окно после смены — переходное
+    case 'verify':
+      if (fps >= thr) { Q.miss = 0; Q.phase = 'watch'; }
+      else if (fps >= Q.before * 1.1) { Q.miss = 0; if (Q.level < last) down(fps); else Q.phase = 'watch'; }
+      // Одна ступень могла почти ничего не стоить (свечение на сильном GPU) — пробуем ещё одну
+      else if (!Q.miss && Q.level < last) { Q.miss = Q.level; down(Q.before); }
+      // Две ступени подряд без прироста: вернуть качество и больше не резать
+      else { setLevel((Q.miss || Q.level) - 1); Q.miss = 0; Q.locked = true; Q.phase = 'watch'; }
+      break;
+    case 'up-settle': Q.phase = 'up-verify'; break;
+    case 'up-verify':
+      if (fps < thr) { setLevel(Q.level + 1); Q.floor = Q.level; }   // запаса нет — вернуть и больше не пробовать
+      Q.phase = 'watch';
+      break;
+  }
+}
+let win = null;
+function adapt(now, gap, tgt) {
+  if (!LEVELS || document.visibilityState !== 'visible' || simT < 1.2) { win = null; return; }
+  if (!win || gap > 600 || win.tgt !== tgt) { win = { t0: now, n: 0, tgt }; return; }
+  win.n++;
+  if (now - win.t0 < 1000) return;
+  const fps = win.n * 1000 / (now - win.t0);
+  win = { t0: now, n: 0, tgt };
+  // Зум и перенос окна на другой монитор не всегда шлют resize: раз в окно сверяем плотность пикселей
+  const d = dprNow();
+  if (d !== DPR) { DPR = d; if (gl) { resizeCanvas(); invalidate(); } win = null; return; }
+  judge(fps, tgt);
+}
+
+function frame(now) {
+  raf = 0;
+  if (!running) return;
+  raf = requestAnimationFrame(frame);
+  if (!built) return;
+  const iv = 1000 / HZ;
+  // Пока подстройка проверяет ступень, «покой» не включаем: замер должен идти на одной цели
+  idleNow = Q.phase === 'watch' && now - lastActive > 2500;
+  const k = idleNow ? kIdle : kAct;
+  if (lastNow && now - lastNow < (k - 0.5) * iv) return;   // этот кадр экрана пропускаем
+  const gap = lastNow ? now - lastNow : 0;
+  const dt = lastNow ? Math.min(0.05, gap / 1000) : 1 / 60;
+  lastNow = now;
+  update(dt);
+  if (busy || simT - introStart < 2.5) lastActive = now;
+  if (SIM) simStep(dt);
+  render();
+  adapt(now, gap, HZ / k);
+}
+function start() {
+  if (!gl || REDUCED || running) return;
+  running = true; lastNow = 0; win = null; lastActive = performance.now();
+  raf = requestAnimationFrame(frame);
+}
+function stop() { running = false; if (raf) cancelAnimationFrame(raf); raf = 0; }
+// Пауза — только по скрытой вкладке: холст фиксирован, какой-то раздел виден всегда
+function syncRun() { if (document.hidden) stop(); else start(); }
+
+// Режим «меньше движения»: один кадр без анимации, перерисовка только при прокрутке
+let staticPending = false;
+function renderStatic() {
+  if (!gl || staticPending) return;
+  staticPending = true;
+  requestAnimationFrame(() => { staticPending = false; if (!gl || !built) return; if (simT === 0) simT = 6; update(0); render(); });
+}
+function invalidate() { if (REDUCED) renderStatic(); }
+
+/* =====================================================================
+   Раскладка и события
+   ===================================================================== */
+const yieldTask = () => new Promise(r => { if (window.scheduler && scheduler.yield) scheduler.yield().then(r); else setTimeout(r, 0); });
+let built = null, buildGen = 0, readyRes = null;   // built — раскладка, из которой собраны данные
+const firstData = new Promise(r => { readyRes = r; });
+
+// Раскрыли «Что сделано»: разделы ниже уехали целиком. Тогда хватает сдвига сцен по y (uOff),
+// без перестройки и без скачка частиц. null — раскладка изменилась иначе, нужна перестройка
+function rigidShift(b, g) {
+  if (b.W !== g.W || b.work.horiz !== g.work.horiz) return null;
+  const off = new Float32Array(8), eq = (a, c) => Math.abs(a - c) < 0.75;
+  const zip = (a, c) => a.length === c.length ? a.map((p, k) => [p, c[k]]) : [[{ x: 0, y: 0 }, null]];
+  const rig = (s, rects, pts) => {
+    const dy = rects[0][1].y - rects[0][0].y;
+    const ok = rects.every(([o, n]) => eq(n.y - o.y, dy) && eq(n.x, o.x) && eq(n.w, o.w) && eq(n.h, o.h))
+      && pts.every(([o, n]) => n && eq(n.y - o.y, dy) && eq(n.x, o.x));
+    off[s] = dy;
+    return ok;
+  };
+  const ok = rig(0, [[b.hero, g.hero]], [])
+    && rig(1, [[b.about, g.about]], [[b.net, g.net]])
+    && rig(2, [[b.work.sec, g.work.sec], [b.work.tr, g.work.tr]], zip(b.work.nodes, g.work.nodes))
+    && rig(3, [[b.exp, g.exp]], zip(b.marks, g.marks))
+    && rig(6, [[b.contact, g.contact]], [[b.plane, g.plane]]);
+  return ok ? off : null;
+}
+
+async function layout(full) {
+  const g = measure(full ? null : built);
+  if (!gl) { geoCache = g; return; }
+  if (!full && built) {
+    const off = rigidShift(built, g);
+    if (off) { offs.set(off); geoCache = g; sceneParams(); invalidate(); return; }
+  }
+  // Полная перестройка короткими задачами: между сценами отдаём поток странице
+  const my = ++buildGen, it = buildData(g);
+  let r;
+  while (!(r = it.next()).done) { await yieldTask(); if (my !== buildGen || !gl) return; }
+  geoCache = g; built = g; offs.fill(0);
+  sceneParams(); resizeCanvas(); uploadData(r.value);
+  readyRes();
+  invalidate();
+}
+
+// Эмблемы проектов: по одной за задачу, сразу в текстуру
+let embGen = 0, embReady = 0;
+async function buildEmbAsync() {
+  const my = ++embGen, it = buildEmblems();
+  embReady = 0;
+  for (let r = it.next(); !r.done; r = it.next()) {
+    if (my !== embGen || !gl) return;
+    const [e, E] = r.value;
+    gl.bindTexture(gl.TEXTURE_2D, embTex);
+    gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
+    gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, e * EMB_ROWS, EMB_W, EMB_ROWS, gl.RGBA, gl.FLOAT, E);
+    embReady = e + 1;
+    invalidate();
+    await yieldTask();
+  }
+}
+
+let hasGL = false;
+const bootT = {};
+async function boot() {
+  const t0 = performance.now();
+  if (!REDUCED && !qs.has('nogl')) setHz(await probeHz());
+  const t1 = performance.now();
+  hasGL = await initGL();
+  bootT.probe = Math.round(t1 - t0); bootT.gl = Math.round(performance.now() - t1);
+  if (!hasGL) { root.classList.add('no-gl'); geoCache = measure(); return; }
+  LEVELS = makeLevels();
+  await yieldTask();
+  const t2 = performance.now();
+  layout(true);
+  await firstData;
+  bootT.data = Math.round(performance.now() - t2);
+  sCur = sceneFromScroll(); splitState(sCur);
+  update(0);
+  introStart = REDUCED ? -1 : 0;
+  if (REDUCED) addEventListener('scroll', renderStatic, { passive: true });
+  else { document.addEventListener('visibilitychange', syncRun); syncRun(); }
+  const t3 = performance.now();
+  await buildEmbAsync();
+  bootT.emb = Math.round(performance.now() - t3);
+}
+// Тяжёлая подготовка — после первой отрисовки: текст виден сразу
+requestAnimationFrame(() => setTimeout(boot, 0));
+
+// Потеря WebGL-контекста: запасной CSS-фон; вернулся контекст — собираем графику заново
+canvas.addEventListener('webglcontextlost', e => {
+  e.preventDefault(); stop(); root.classList.add('no-gl');
+  gl = null; built = null; buildGen++; embGen++;
+});
+canvas.addEventListener('webglcontextrestored', async () => {
+  root.classList.remove('no-gl');
+  if (!(await initGL())) { root.classList.add('no-gl'); return; }
+  if (LEVELS) setLevel(Q.level);
+  await layout(true);
+  if (!gl || !built) return;
+  introStart = simT;
+  buildEmbAsync();
+  if (REDUCED) renderStatic(); else syncRun();
+});
+
+// Перестройка при изменении размеров: ширина окна — заново, только высота содержимого — сдвигом
+let lastW = innerWidth, lastDocH = document.body.scrollHeight, relayT = 0, relayFull = false;
+new ResizeObserver(() => {
+  const h = document.body.scrollHeight, wide = innerWidth !== lastW;
+  if (!wide && Math.abs(h - lastDocH) < 2) return;
+  lastW = innerWidth; lastDocH = h; relayFull = relayFull || wide;
+  clearTimeout(relayT);
+  relayT = setTimeout(() => { const f = relayFull; relayFull = false; if (hasGL || geoCache) layout(f); }, relayFull ? 180 : 40);
+}).observe(document.body);
+addEventListener('resize', () => { DPR = dprNow(); if (gl) { resizeCanvas(); if (geoCache) sceneParams(); invalidate(); } });
+// Масштаб браузера и перенос окна на другой монитор меняют devicePixelRatio
+let dprMQ = null;   // ссылка нужна: без неё объект запроса собирает сборщик мусора вместе со слушателем
+const watchDpr = () => {
+  try {
+    dprMQ = matchMedia(`(resolution: ${window.devicePixelRatio || 1}dppx)`);
+    dprMQ.addEventListener('change', () => { DPR = dprNow(); if (gl) { resizeCanvas(); invalidate(); } watchDpr(); }, { once: true });
+  } catch (e) { /* старый браузер: без слежения */ }
+};
+watchDpr();
+
+// Курсор и палец
+addEventListener('pointermove', e => { if (e.pointerType !== 'touch') { ptr.x = e.clientX; ptr.y = e.clientY; ptr.on = true; } }, { passive: true });
+root.addEventListener('pointerleave', () => { ptr.on = false; });
+addEventListener('blur', () => { ptr.on = false; });
+const touch = e => { const t = e.touches[0]; if (t) { ptr.x = t.clientX; ptr.y = t.clientY; ptr.on = true; } };
+addEventListener('touchstart', touch, { passive: true });
+addEventListener('touchmove', touch, { passive: true });
+addEventListener('touchend', () => { ptr.on = false; }, { passive: true });
+addEventListener('touchcancel', () => { ptr.on = false; }, { passive: true });
+// Ударная волна по клику (не по клавиатуре)
+addEventListener('click', e => {
+  if (!e.detail || REDUCED) return;
+  shocks.set([e.clientX, e.clientY + scrollY, simT, MOBILE ? 16000 : 24000], shockHead * 4);
+  shockHead = (shockHead + 1) % 3;
+});
+cardEls.forEach((c, i) => {
+  c.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { hoverCard = i; invalidate(); } });
+  c.addEventListener('pointerleave', () => { if (hoverCard === i) { hoverCard = -1; invalidate(); } });
+  // Фокус считается, только если он виден (клавиатура): тап по «Что сделано» эмблему не держит
+  c.addEventListener('focusin', e => { if (focusVisible(e.target)) { hoverCard = i; invalidate(); } });
+  c.addEventListener('focusout', () => { if (hoverCard === i) hoverCard = -1; });
+});
+grpEls.forEach((g, i) => {
+  g.addEventListener('pointerenter', () => { hoverGrp = i; invalidate(); });
+  g.addEventListener('pointerleave', () => { if (hoverGrp === i) { hoverGrp = -1; invalidate(); } });
+});
+// Telegram в «Связаться»: самолётик улетает и собирается снова
+const tg = $('#tgBtn');
+const fly = () => { if (flyT0 < 0 && !REDUCED) flyT0 = simT; };
+tg.addEventListener('pointerenter', fly);
+tg.addEventListener('focus', fly);
+
+// Для проверки из консоли
+window.__gfx = () => ({
+  gl: !!gl, tier: !gl ? 'nogl' : SIM === 1 ? 'float32' : SIM === 2 ? 'half-float' : 'analytic',
+  N, NMAX, bloom: BLOOM && !!rt, lines: LINES ? lineCount : 0, dpr: DPR, mobile: MOBILE, tablet: TABLET, reduced: REDUCED,
+  downgrades: Q.level, levels: LEVELS ? LEVELS.length - 1 : 0, phase: Q.phase, locked: Q.locked,
+  hz: Math.round(HZ), target: Math.round(HZ / kAct), idle: idleNow, fps: Q.log.slice(),
+  scene: +sCur.toFixed(3), emb: EMB_KEYS[embCur], embReady, boot: bootT, offs: Array.from(offs.subarray(0, SC), Math.round),
+});
+})();
+</script>
 </body>
 </html>
